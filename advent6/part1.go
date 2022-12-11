@@ -22,18 +22,25 @@ func main() {
 		line := scanner.Text()
 
 		for n := 4; n < len(line); n++ {
-			var employee = make(map[byte]int)
-			employee[line[n-3]] = 1
-			employee[line[n-2]] = 1
-			employee[line[n-1]] = 1
-			employee[line[n-0]] = 1
-
-			if len(employee) == 4 {
-				fmt.Println(n + 1)
+			if HasNUniqueChars(line[n-4:n], 4) {
+				fmt.Println(n)
 				break
 			}
 		}
 
 	}
 	readFile.Close()
+}
+
+func HasNUniqueChars(line string, n int) bool {
+	var chars = make(map[byte]int)
+	chars[line[0]] = 1
+	chars[line[1]] = 1
+	chars[line[2]] = 1
+	chars[line[3]] = 1
+
+	if len(chars) == n {
+		return true
+	}
+	return false
 }
