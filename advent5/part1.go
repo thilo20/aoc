@@ -51,7 +51,7 @@ func Reverse(s string) string {
 	return string(buf)
 }
 
-// day 4 part 1
+// day 5 part 1
 func main() {
 
 	filePath := os.Args[1]
