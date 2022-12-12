@@ -19,7 +19,7 @@
             "request": "launch",
             "mode": "auto",
             "program": "${fileDirname}",
-            "args": ["inputs1.txt"]
+            "args": ["inputs2.txt"]
         }
     ]
 }

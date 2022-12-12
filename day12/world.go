@@ -44,20 +44,16 @@ var KindRunes = map[int]rune{
 // RuneKinds map input runes to tile kinds.
 var RuneKinds = map[rune]int{
 	'.': KindPlain,
-	'~': KindRiver,
-	'M': KindMountain,
 	'X': KindBlocker,
-	'F': KindFrom,
-	'T': KindTo,
+	'S': KindFrom,
+	'E': KindTo,
 }
 
 // KindCosts map tile kinds to movement costs.
 var KindCosts = map[int]float64{
-	KindPlain:    1.0,
-	KindFrom:     1.0,
-	KindTo:       1.0,
-	KindRiver:    2.0,
-	KindMountain: 3.0,
+	KindPlain: 1.0,
+	KindFrom:  1.0,
+	KindTo:    1.0,
 }
 
 // A Tile is a tile in a grid which implements Pather.
@@ -68,6 +64,8 @@ type Tile struct {
 	X, Y int
 	// W is a reference to the World that the tile is a part of.
 	W World
+	// Elevation is the label text of the tile (converted from a-z).
+	Elevation byte
 }
 
 // PathNeighbors returns the neighbors of the tile, excluding blockers and
@@ -82,7 +80,10 @@ func (t *Tile) PathNeighbors() []astar.Pather {
 	} {
 		if n := t.W.Tile(t.X+offset[0], t.Y+offset[1]); n != nil &&
 			n.Kind != KindBlocker {
-			neighbors = append(neighbors, n)
+			//elevation of the destination square can be at most one higher than the elevation of your current square
+			if n.Elevation <= t.Elevation+1 {
+				neighbors = append(neighbors, n)
+			}
 		}
 	}
 	return neighbors
@@ -189,10 +190,18 @@ func ParseWorld(input string) World {
 		for x, raw := range row {
 			kind, ok := RuneKinds[raw]
 			if !ok {
-				kind = KindBlocker
+				kind = KindPlain //blockers are explicit 'X'
+			}
+			//Your current position (S) has elevation a, and the location that should get the best signal (E) has elevation z.
+			switch raw {
+			case 'S':
+				raw = 'a'
+			case 'E':
+				raw = 'z'
 			}
 			w.SetTile(&Tile{
-				Kind: kind,
+				Kind:      kind,
+				Elevation: byte(raw),
 			}, x, y)
 		}
 	}
