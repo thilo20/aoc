@@ -145,6 +145,19 @@ func (w World) FirstOfKind(kind int) *Tile {
 	return nil
 }
 
+// Elevations gets all tiles on the board having the given elevation.
+func (w World) Elevations(ele byte) []*Tile {
+	tiles := []*Tile{}
+	for _, row := range w {
+		for _, t := range row {
+			if t.Elevation == ele {
+				tiles = append(tiles, t)
+			}
+		}
+	}
+	return tiles
+}
+
 // From gets the from tile from the world.
 func (w World) From() *Tile {
 	return w.FirstOfKind(KindFrom)
