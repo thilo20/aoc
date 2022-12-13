@@ -77,4 +77,22 @@ func main() {
 
 	fmt.Println("home:", home)
 	fmt.Println("cwd:", *cwd)
+
+	total := 0
+	fmt.Println("total size:", home.Size(100000, &total), "limited:", total)
+}
+
+func (d *Directory) Size(limit int, total *int) int {
+	size := 0
+	for _, v := range d.files {
+		size += v.size
+	}
+	for _, v := range d.subdirs {
+		size += v.Size(limit, total)
+	}
+	fmt.Println("dir:", d.name, "size:", size)
+	if size < limit {
+		*total += size
+	}
+	return size
 }
