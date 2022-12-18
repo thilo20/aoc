@@ -1,0 +1,40 @@
+thilo@Thilos-MBP day16 % go run part1.go inputs2.txt
+tunnels: map[AA:[SH XF ZM HN WF] AF:[PD OD] AM:[XZ SB] AN:[UF PU] AR:[OD XY] AT:[DS NC] CF:[DC] CK:[IO OU] CL:[YA LD] CW:[QY PQ ZC ZU] CY:[YE IP] DC:[CF DR] DL:[FO LA YI OU FD] DR:[DC YA] DS:[AT DV] DV:[FD KR HN DS XU] FD:[DV DL] FO:[DL NC] GE:[KR IO] GY:[UF ZC] HN:[AA DV] HY:[NC IO] IO:[GE CK HY XB] IP:[CY ML YI XY SH] KR:[GE DV] LA:[DL ZM] LD:[CL QU] MK:[ZS SB] ML:[NC IP] MQ:[QY PD] NC:[HY ML NJ AT FO] NJ:[NC WF] OD:[ZS AF SY QQ AR] OU:[CK DL] PD:[MQ QU XZ AF UQ] PQ:[WK CW] PU:[ZJ AN] QQ:[OD UF] QU:[LD PD] QY:[CW MQ] SB:[MK AM ZU] SH:[IP AA] SY:[ZJ OD] UF:[QQ AN YE GY] UQ:[XU PD] WF:[NJ AA] WK:[PQ] XB:[IO XF] XF:[XB AA] XU:[DV UQ] XY:[IP AR] XZ:[AM PD] YA:[CL DR] YE:[CY UF] YI:[DL IP] ZC:[GY CW] ZJ:[SY PU] ZM:[AA LA] ZS:[MK OD] ZU:[CW SB]]
+flow rates: map[CF:12 CL:16 CW:15 DL:5 DR:22 DV:7 IO:14 IP:8 NC:6 OD:13 PD:9 SB:24 UF:18 WK:19 ZJ:25]
+minute: 0 nodes: 1 next: 5
+Max pressure after 0 minutes: 0 s={0 0   map[] 0 }
+minute: 1 nodes: 5 next: 10
+Max pressure after 1 minutes: 0 s={0 0   map[] 0 }
+minute: 2 nodes: 10 next: 28
+Max pressure after 2 minutes: 0 s={0 0   map[] 0 }
+minute: 3 nodes: 28 next: 91
+Max pressure after 3 minutes: 8 s={4 8 CY IP map[IP:4] 8 move}
+minute: 4 nodes: 91 next: 286
+Max pressure after 4 minutes: 16 s={5 8 YE CY map[IP:4] 16 move}
+minute: 5 nodes: 286 next: 885
+Max pressure after 5 minutes: 28 s={6 14 KR GE map[IO:5] 28 move}
+minute: 6 nodes: 885 next: 2745
+Max pressure after 6 minutes: 42 s={7 14 DV KR map[IO:5] 42 move}
+minute: 7 nodes: 2745 next: 8511
+Max pressure after 7 minutes: 62 s={8 20 HY NC map[IO:5 NC:8] 62 move}
+minute: 8 nodes: 8511 next: 26242
+Max pressure after 8 minutes: 84 s={9 26 OD QQ map[IP:4 UF:8] 84 move}
+minute: 9 nodes: 26242 next: 80301
+Max pressure after 9 minutes: 110 s={10 26 OD OD map[IP:4 UF:8] 110 open}
+minute: 10 nodes: 80301 next: 243951
+Max pressure after 10 minutes: 149 s={11 39 ZS OD map[IP:4 OD:11 UF:8] 149 move}
+minute: 11 nodes: 243951 next: 736822
+Max pressure after 11 minutes: 188 s={12 39 MK ZS map[IP:4 OD:11 UF:8] 188 move}
+minute: 12 nodes: 736822 next: 2216237
+Max pressure after 12 minutes: 238 s={13 51 OD SY map[IP:4 UF:8 ZJ:12] 238 move}
+minute: 13 nodes: 2216237 next: 6647380
+Max pressure after 13 minutes: 291 s={14 64 SY ZJ map[IP:4 OD:11 UF:8 ZJ:14] 291 move}
+minute: 14 nodes: 6647380 next: 19899929
+Max pressure after 14 minutes: 355 s={15 64 OD SY map[IP:4 OD:11 UF:8 ZJ:14] 355 move}
+minute: 15 nodes: 19899929 next: 59487738
+Max pressure after 15 minutes: 419 s={16 64 ZS OD map[IP:4 OD:11 UF:8 ZJ:14] 419 move}
+minute: 16 nodes: 59487738 next: 177607625
+Max pressure after 16 minutes: 483 s={17 64 MK ZS map[IP:4 OD:11 UF:8 ZJ:14] 483 move}
+^C
+signal: interrupt
+thilo@Thilos-MBP day16 % 

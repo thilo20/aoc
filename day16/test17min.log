@@ -1,0 +1,1017 @@
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 2
+expanded: 4
+expanded: 2
+expanded: 4
+expanded: 2
+expanded: 2
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 2
+expanded: 4
+expanded: 2
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 2
+expanded: 4
+expanded: 3
+expanded: 4
+expanded: 2
+expanded: 3
+expanded: 2
+expanded: 4
+expanded: 2
+expanded: 4
+expanded: 3
+expanded: 2
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+opened: map[CC:true HH:true] flowrate: 24
+expanded: 1
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true EE:true] flowrate: 25
+expanded: 2
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 2
+expanded: 4
+expanded: 3
+expanded: 2
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 4
+expanded: 2
+expanded: 4
+expanded: 2
+expanded: 2
+opened: map[BB:true CC:true EE:true] flowrate: 18
+expanded: 2
+expanded: 2
+expanded: 4
+expanded: 4
+expanded: 2
+expanded: 4
+expanded: 2
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 4
+expanded: 2
+expanded: 4
+expanded: 2
+expanded: 2
+opened: map[BB:true CC:true EE:true] flowrate: 18
+expanded: 2
+expanded: 2
+expanded: 4
+expanded: 4
+expanded: 2
+expanded: 2
+opened: map[BB:true CC:true JJ:true] flowrate: 36
+expanded: 1
+expanded: 2
+expanded: 4
+expanded: 2
+expanded: 4
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true EE:true] flowrate: 25
+expanded: 2
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 2
+expanded: 4
+expanded: 3
+expanded: 2
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 4
+expanded: 2
+expanded: 4
+expanded: 2
+expanded: 2
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true EE:true] flowrate: 25
+expanded: 2
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 2
+expanded: 4
+expanded: 3
+expanded: 2
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 2
+expanded: 4
+expanded: 2
+expanded: 4
+expanded: 2
+expanded: 2
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true EE:true] flowrate: 25
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true EE:true] flowrate: 25
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true JJ:true] flowrate: 43
+expanded: 1
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 2
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 2
+opened: map[CC:true DD:true EE:true] flowrate: 25
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true EE:true] flowrate: 25
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true EE:true] flowrate: 25
+expanded: 2
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 2
+expanded: 4
+expanded: 3
+expanded: 2
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 4
+expanded: 2
+expanded: 4
+expanded: 2
+expanded: 2
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true EE:true] flowrate: 25
+expanded: 2
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 2
+expanded: 4
+expanded: 3
+expanded: 2
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 2
+expanded: 4
+expanded: 2
+expanded: 4
+expanded: 2
+expanded: 2
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 2
+expanded: 4
+expanded: 2
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 2
+expanded: 4
+expanded: 3
+expanded: 4
+expanded: 2
+expanded: 3
+expanded: 2
+expanded: 4
+expanded: 2
+expanded: 4
+expanded: 3
+expanded: 2
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+opened: map[CC:true HH:true] flowrate: 24
+expanded: 1
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true EE:true] flowrate: 25
+expanded: 2
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 2
+expanded: 4
+expanded: 3
+expanded: 2
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true EE:true] flowrate: 25
+expanded: 2
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 2
+expanded: 4
+expanded: 3
+expanded: 2
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 2
+expanded: 4
+expanded: 2
+expanded: 4
+expanded: 2
+expanded: 2
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 4
+expanded: 2
+expanded: 3
+expanded: 2
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 4
+expanded: 2
+expanded: 4
+expanded: 2
+expanded: 2
+opened: map[BB:true CC:true EE:true] flowrate: 18
+expanded: 2
+expanded: 2
+expanded: 4
+expanded: 4
+expanded: 2
+expanded: 4
+expanded: 2
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 4
+expanded: 2
+expanded: 4
+expanded: 2
+expanded: 2
+opened: map[BB:true CC:true EE:true] flowrate: 18
+expanded: 2
+expanded: 2
+expanded: 4
+expanded: 4
+expanded: 2
+expanded: 2
+opened: map[BB:true CC:true JJ:true] flowrate: 36
+expanded: 1
+expanded: 2
+expanded: 4
+expanded: 2
+expanded: 4
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true EE:true] flowrate: 25
+expanded: 2
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 2
+expanded: 4
+expanded: 3
+expanded: 2
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 4
+expanded: 2
+expanded: 4
+expanded: 2
+expanded: 2
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true EE:true] flowrate: 25
+expanded: 2
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expanded: 3
+opened: map[CC:true DD:true] flowrate: 22
+expanded: 3
+expanded: 2
+expanded: 3
+expanded: 3
+expanded: 3
+expanded: 2
+opened: map[BB:true CC:true] flowrate: 15
+expanded: 2
+expanded: 2
+expan%                                                                                                                                  
+thilo@Thilos-MBP day16 %  cd /Users/thilo/repo/advent/day16 ; /usr/bin/env GOPATH=/Users/thilo/go /Users/thilo/go/bin/dlv dap --check-go
+-version=false --client-addr=:60822 
+tunnels: map[AA:[DD II BB] BB:[CC AA] CC:[DD BB] DD:[CC AA EE] EE:[FF DD] FF:[EE GG] GG:[FF HH] HH:[GG] II:[AA JJ] JJ:[II]]
+flow rates: map[BB:13 CC:2 DD:20 EE:3 HH:22 JJ:21]
+minute: 0 nodes: 1 next: 3
+minute: 1 nodes: 3 next: 12
+minute: 2 nodes: 12 next: 46
+Max pressure after 3 minutes: 20
+thilo@Thilos-MBP day16 %  cd /Users/thilo/repo/advent/day16 ; /usr/bin/env GOPATH=/Users/thilo/go /Users/thilo/go/bin/dlv dap --check-go
+-version=false --client-addr=:60825 
+tunnels: map[AA:[DD II BB] BB:[CC AA] CC:[DD BB] DD:[CC AA EE] EE:[FF DD] FF:[EE GG] GG:[FF HH] HH:[GG] II:[AA JJ] JJ:[II]]
+flow rates: map[BB:13 CC:2 DD:20 EE:3 HH:22 JJ:21]
+minute: 0 nodes: 1 next: 3
+minute: 1 nodes: 3 next: 12
+minute: 2 nodes: 12 next: 46
+minute: 3 nodes: 46 next: 176
+Max pressure after 4 minutes: 40
+thilo@Thilos-MBP day16 %  cd /Users/thilo/repo/advent/day16 ; /usr/bin/env GOPATH=/Users/thilo/go /Users/thilo/go/bin/dlv dap --check-go
+-version=false --client-addr=:60833 
+tunnels: map[AA:[DD II BB] BB:[CC AA] CC:[DD BB] DD:[CC AA EE] EE:[FF DD] FF:[EE GG] GG:[FF HH] HH:[GG] II:[AA JJ] JJ:[II]]
+flow rates: map[BB:13 CC:2 DD:20 EE:3 HH:22 JJ:21]
+minute: 0 nodes: 1 next: 3
+Max pressure after 0 minutes: 0
+minute: 1 nodes: 3 next: 12
+Max pressure after 1 minutes: 0
+minute: 2 nodes: 12 next: 46
+Max pressure after 2 minutes: 20
+minute: 3 nodes: 46 next: 176
+Max pressure after 3 minutes: 40
+thilo@Thilos-MBP day16 %  cd /Users/thilo/repo/advent/day16 ; /usr/bin/env GOPATH=/Users/thilo/go /Users/thilo/go/bin/dlv dap --check-go
+-version=false --client-addr=:60838 
+tunnels: map[AA:[DD II BB] BB:[CC AA] CC:[DD BB] DD:[CC AA EE] EE:[FF DD] FF:[EE GG] GG:[FF HH] HH:[GG] II:[AA JJ] JJ:[II]]
+flow rates: map[BB:13 CC:2 DD:20 EE:3 HH:22 JJ:21]
+minute: 0 nodes: 1 next: 3
+Max pressure after 0 minutes: 0
+minute: 1 nodes: 3 next: 12
+Max pressure after 1 minutes: 0
+minute: 2 nodes: 12 next: 46
+pres: 20
+pres: 20
+pres: 20
+pres: 13
+pres: 13
+Max pressure after 2 minutes: 20
+minute: 3 nodes: 46 next: 176
+pres: 20
+pres: 20
+pres: 20
+pres: 13
+pres: 13
+pres: 20
+pres: 20
+pres: 20
+pres: 13
+pres: 13
+pres: 20
+pres: 20
+pres: 20
+pres: 13
+pres: 13
+pres: 40
+pres: 40
+pres: 40
+pres: 40
+pres: 40
+pres: 40
+pres: 40
+pres: 40
+pres: 40
+pres: 2
+pres: 2
+pres: 3
+pres: 3
+pres: 21
+pres: 26
+pres: 26
+pres: 26
+pres: 26
+pres: 26
+pres: 26
+pres: 2
+pres: 2
+Max pressure after 3 minutes: 40
+thilo@Thilos-MBP day16 %  cd /Users/thilo/repo/advent/day16 ; /usr/bin/env GOPATH=/Users/thilo/go /Users/thilo/go/bin/dlv dap --check-go
+-version=false --client-addr=:60858 
+tunnels: map[AA:[DD II BB] BB:[CC AA] CC:[DD BB] DD:[CC AA EE] EE:[FF DD] FF:[EE GG] GG:[FF HH] HH:[GG] II:[AA JJ] JJ:[II]]
+flow rates: map[BB:13 CC:2 DD:20 EE:3 HH:22 JJ:21]
+minute: 0 nodes: 1 next: 3
+Max pressure after 0 minutes: 0
+minute: 1 nodes: 3 next: 12
+Max pressure after 1 minutes: 0
+minute: 2 nodes: 12 next: 46
+Max pressure after 2 minutes: 20
+minute: 3 nodes: 46 next: 176
+Max pressure after 3 minutes: 40
+minute: 4 nodes: 176 next: 671
+Max pressure after 4 minutes: 63
+minute: 5 nodes: 671 next: 2554
+Max pressure after 5 minutes: 93
+thilo@Thilos-MBP day16 %  cd /Users/thilo/repo/advent/day16 ; /usr/bin/env GOPATH=/Users/thilo/go /Users/thilo/go/bin/dlv dap --check-go
+-version=false --client-addr=:60861 
+tunnels: map[AA:[DD II BB] BB:[CC AA] CC:[DD BB] DD:[CC AA EE] EE:[FF DD] FF:[EE GG] GG:[FF HH] HH:[GG] II:[AA JJ] JJ:[II]]
+flow rates: map[BB:13 CC:2 DD:20 EE:3 HH:22 JJ:21]
+minute: 0 nodes: 1 next: 3
+Max pressure after 0 minutes: 0
+minute: 1 nodes: 3 next: 12
+Max pressure after 1 minutes: 0
+minute: 2 nodes: 12 next: 46
+Max pressure after 2 minutes: 20
+minute: 3 nodes: 46 next: 176
+Max pressure after 3 minutes: 40
+minute: 4 nodes: 176 next: 671
+Max pressure after 4 minutes: 63
+minute: 5 nodes: 671 next: 2554
+Max pressure after 5 minutes: 93
+minute: 6 nodes: 2554 next: 9691
+Max pressure after 6 minutes: 126
+minute: 7 nodes: 9691 next: 36660
+Max pressure after 7 minutes: 162
+minute: 8 nodes: 36660 next: 138213
+Max pressure after 8 minutes: 203
+minute: 9 nodes: 138213 next: 519326
+Max pressure after 9 minutes: 246
+thilo@Thilos-MBP day16 %  cd /Users/thilo/repo/advent/day16 ; /usr/bin/env GOPATH=/Users/thilo/go /Users/thilo/go/bin/dlv dap --check-go
+-version=false --client-addr=:60874 
+tunnels: map[AA:[DD II BB] BB:[CC AA] CC:[DD BB] DD:[CC AA EE] EE:[FF DD] FF:[EE GG] GG:[FF HH] HH:[GG] II:[AA JJ] JJ:[II]]
+flow rates: map[BB:13 CC:2 DD:20 EE:3 HH:22 JJ:21]
+minute: 0 nodes: 1 next: 3
+Max pressure after 0 minutes: 0
+minute: 1 nodes: 3 next: 9
+Max pressure after 1 minutes: 0
+minute: 2 nodes: 9 next: 27
+Max pressure after 2 minutes: 20
+minute: 3 nodes: 27 next: 80
+Max pressure after 3 minutes: 40
+minute: 4 nodes: 80 next: 237
+Max pressure after 4 minutes: 63
+minute: 5 nodes: 237 next: 702
+Max pressure after 5 minutes: 93
+minute: 6 nodes: 702 next: 2058
+Max pressure after 6 minutes: 126
+minute: 7 nodes: 2058 next: 5931
+Max pressure after 7 minutes: 162
+minute: 8 nodes: 5931 next: 16796
+Max pressure after 8 minutes: 203
+minute: 9 nodes: 16796 next: 46860
+Max pressure after 9 minutes: 246
+thilo@Thilos-MBP day16 %  cd /Users/thilo/repo/advent/day16 ; /usr/bin/env GOPATH=/Users/thilo/go /Users/thilo/go/bin/dlv dap --check-go
+-version=false --client-addr=:60878 
+tunnels: map[AA:[DD II BB] BB:[CC AA] CC:[DD BB] DD:[CC AA EE] EE:[FF DD] FF:[EE GG] GG:[FF HH] HH:[GG] II:[AA JJ] JJ:[II]]
+flow rates: map[BB:13 CC:2 DD:20 EE:3 HH:22 JJ:21]
+minute: 0 nodes: 1 next: 3
+Max pressure after 0 minutes: 0
+minute: 1 nodes: 3 next: 12
+Max pressure after 1 minutes: 0
+minute: 2 nodes: 12 next: 46
+Max pressure after 2 minutes: 20
+minute: 3 nodes: 46 next: 176
+Max pressure after 3 minutes: 40
+minute: 4 nodes: 176 next: 671
+Max pressure after 4 minutes: 63
+minute: 5 nodes: 671 next: 2554
+Max pressure after 5 minutes: 93
+minute: 6 nodes: 2554 next: 9691
+Max pressure after 6 minutes: 126
+minute: 7 nodes: 9691 next: 36660
+Max pressure after 7 minutes: 162
+minute: 8 nodes: 36660 next: 138213
+Max pressure after 8 minutes: 203
+minute: 9 nodes: 138213 next: 519326
+Max pressure after 9 minutes: 246
+thilo@Thilos-MBP day16 %  cd /Users/thilo/repo/advent/day16 ; /usr/bin/env GOPATH=/Users/thilo/go /Users/thilo/go/bin/dlv dap --check-go
+-version=false --client-addr=:60881 
+tunnels: map[AA:[DD II BB] BB:[CC AA] CC:[DD BB] DD:[CC AA EE] EE:[FF DD] FF:[EE GG] GG:[FF HH] HH:[GG] II:[AA JJ] JJ:[II]]
+flow rates: map[BB:13 CC:2 DD:20 EE:3 HH:22 JJ:21]
+minute: 0 nodes: 1 next: 3
+Max pressure after 0 minutes: 0
+minute: 1 nodes: 3 next: 9
+Max pressure after 1 minutes: 0
+minute: 2 nodes: 9 next: 27
+Max pressure after 2 minutes: 20
+minute: 3 nodes: 27 next: 80
+Max pressure after 3 minutes: 40
+minute: 4 nodes: 80 next: 237
+Max pressure after 4 minutes: 63
+minute: 5 nodes: 237 next: 702
+Max pressure after 5 minutes: 93
+minute: 6 nodes: 702 next: 2058
+Max pressure after 6 minutes: 126
+minute: 7 nodes: 2058 next: 5931
+Max pressure after 7 minutes: 162
+minute: 8 nodes: 5931 next: 16796
+Max pressure after 8 minutes: 203
+minute: 9 nodes: 16796 next: 46860
+Max pressure after 9 minutes: 246
+thilo@Thilos-MBP day16 %  cd /Users/thilo/repo/advent/day16 ; /usr/bin/env GOPATH=/Users/thilo/go /Users/thilo/go/bin/dlv dap --check-go
+-version=false --client-addr=:60884 
+tunnels: map[AA:[DD II BB] BB:[CC AA] CC:[DD BB] DD:[CC AA EE] EE:[FF DD] FF:[EE GG] GG:[FF HH] HH:[GG] II:[AA JJ] JJ:[II]]
+flow rates: map[BB:13 CC:2 DD:20 EE:3 HH:22 JJ:21]
+minute: 0 nodes: 1 next: 3
+Max pressure after 0 minutes: 0
+minute: 1 nodes: 3 next: 9
+Max pressure after 1 minutes: 0
+minute: 2 nodes: 9 next: 27
+Max pressure after 2 minutes: 20
+minute: 3 nodes: 27 next: 80
+Max pressure after 3 minutes: 40
+minute: 4 nodes: 80 next: 237
+Max pressure after 4 minutes: 63
+minute: 5 nodes: 237 next: 702
+Max pressure after 5 minutes: 93
+minute: 6 nodes: 702 next: 2058
+Max pressure after 6 minutes: 126
+minute: 7 nodes: 2058 next: 5931
+Max pressure after 7 minutes: 162
+minute: 8 nodes: 5931 next: 16796
+Max pressure after 8 minutes: 203
+minute: 9 nodes: 16796 next: 46860
+Max pressure after 9 minutes: 246
+minute: 10 nodes: 46860 next: 129145
+Max pressure after 10 minutes: 300
+minute: 11 nodes: 129145 next: 352218
+Max pressure after 11 minutes: 354
+minute: 12 nodes: 352218 next: 951600
+Max pressure after 12 minutes: 408
+minute: 13 nodes: 951600 next: 2548513
+Max pressure after 13 minutes: 464
+minute: 14 nodes: 2548513 next: 6769215
+Max pressure after 14 minutes: 520
+minute: 15 nodes: 6769215 next: 17841894
+Max pressure after 15 minutes: 579
+minute: 16 nodes: 17841894 next: 46691452
+Max pressure after 16 minutes: 638
+minute: 17 nodes: 46691452 next: 121385608
+Max pressure after 17 minutes: 700
+thilo@Thilos-MBP day16 % 
