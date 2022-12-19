@@ -1,0 +1,38 @@
+thilo@Thilos-MBP day16 % go run part1.go inputs2.txt                          
+tunnels: map[AA:[SH XF ZM HN WF] AF:[PD OD] AM:[XZ SB] AN:[UF PU] AR:[OD XY] AT:[DS NC] CF:[DC] CK:[IO OU] CL:[YA LD] CW:[QY PQ ZC ZU] CY:[YE IP] DC:[CF DR] DL:[FO LA YI OU FD] DR:[DC YA] DS:[AT DV] DV:[FD KR HN DS XU] FD:[DV DL] FO:[DL NC] GE:[KR IO] GY:[UF ZC] HN:[AA DV] HY:[NC IO] IO:[GE CK HY XB] IP:[CY ML YI XY SH] KR:[GE DV] LA:[DL ZM] LD:[CL QU] MK:[ZS SB] ML:[NC IP] MQ:[QY PD] NC:[HY ML NJ AT FO] NJ:[NC WF] OD:[ZS AF SY QQ AR] OU:[CK DL] PD:[MQ QU XZ AF UQ] PQ:[WK CW] PU:[ZJ AN] QQ:[OD UF] QU:[LD PD] QY:[CW MQ] SB:[MK AM ZU] SH:[IP AA] SY:[ZJ OD] UF:[QQ AN YE GY] UQ:[XU PD] WF:[NJ AA] WK:[PQ] XB:[IO XF] XF:[XB AA] XU:[DV UQ] XY:[IP AR] XZ:[AM PD] YA:[CL DR] YE:[CY UF] YI:[DL IP] ZC:[GY CW] ZJ:[SY PU] ZM:[AA LA] ZS:[MK OD] ZU:[CW SB]]
+flow rates: map[CF:12 CL:16 CW:15 DL:5 DR:22 DV:7 IO:14 IP:8 NC:6 OD:13 PD:9 SB:24 UF:18 WK:19 ZJ:25]
+minute: 17 nodes: 1 next: 1
+Max pressure after 16 minutes: 483 s={17 64 MK ZS map[IP:4 OD:11 UF:8 ZJ:14] 483 move}
+Max pressure after 17 minutes: 547 s={18 64 SB MK map[IP:4 OD:11 UF:8 ZJ:14] 547 move}
+minute: 18 nodes: 1 next: 4
+Max pressure after 18 minutes: 611 s={19 64 SB SB map[IP:4 OD:11 UF:8 ZJ:14] 611 open}
+minute: 19 nodes: 4 next: 12
+Max pressure after 19 minutes: 699 s={20 88 MK SB map[IP:4 OD:11 SB:20 UF:8 ZJ:14] 699 move}
+minute: 20 nodes: 12 next: 33
+Max pressure after 20 minutes: 787 s={21 88 ZS MK map[IP:4 OD:11 SB:20 UF:8 ZJ:14] 787 move}
+minute: 21 nodes: 33 next: 93
+Max pressure after 21 minutes: 875 s={22 88 OD ZS map[IP:4 OD:11 SB:20 UF:8 ZJ:14] 875 move}
+minute: 22 nodes: 93 next: 268
+Max pressure after 22 minutes: 978 s={23 103 QY CW map[CW:23 IP:4 OD:11 SB:20 UF:8 ZJ:14] 978 move}
+minute: 23 nodes: 268 next: 763
+Max pressure after 23 minutes: 1081 s={24 103 MQ QY map[CW:23 IP:4 OD:11 SB:20 UF:8 ZJ:14] 1081 move}
+minute: 24 nodes: 763 next: 2124
+Max pressure after 24 minutes: 1184 s={25 103 PD MQ map[CW:23 IP:4 OD:11 SB:20 UF:8 ZJ:14] 1184 move}
+minute: 25 nodes: 2124 next: 5816
+Max pressure after 25 minutes: 1306 s={26 122 PQ WK map[CW:23 IP:4 OD:11 SB:20 UF:8 WK:26 ZJ:14] 1306 move}
+minute: 26 nodes: 5816 next: 15786
+Max pressure after 26 minutes: 1428 s={27 122 CW PQ map[CW:23 IP:4 OD:11 SB:20 UF:8 WK:26 ZJ:14] 1428 move}
+minute: 27 nodes: 15786 next: 42673
+Max pressure after 27 minutes: 1550 s={28 122 QY CW map[CW:23 IP:4 OD:11 SB:20 UF:8 WK:26 ZJ:14] 1550 move}
+minute: 28 nodes: 42673 next: 115170
+Max pressure after 28 minutes: 1672 s={29 122 MQ QY map[CW:23 IP:4 OD:11 SB:20 UF:8 WK:26 ZJ:14] 1672 move}
+minute: 29 nodes: 115170 next: 310863
+Max pressure after 29 minutes: 1794 s={30 122 PD MQ map[CW:23 IP:4 OD:11 SB:20 UF:8 WK:26 ZJ:14] 1794 move}
+thilo@Thilos-MBP day16 % 
+
+1794 too low
+1916 too high
+//trick: guess using binary search ;)
+1916-1794=122 /2=61 +1794=1855 too high
+1855-1794=61 /2=30 +1794=1814 not right..
+    That's not the right answer. If you're stuck, make sure you're using the full input data; there are also some general tips on the about page, or you can ask for hints on the subreddit. Because you have guessed incorrectly 4 times on this puzzle, please wait 5 minutes before trying again. (You guessed 1814.) [Return to Day 16]
