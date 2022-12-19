@@ -56,11 +56,19 @@ func main() {
 	fmt.Println("tunnels:", tunnels)
 	fmt.Println("flow rates:", rates)
 
-	// breadth first search
-	nodes := []State{{0, 0, "AA", "AA", map[string]int{}, 0, ""}}
+	// mode 1: init breadth first search
+	// nodes := []State{{0, 0, "AA", "AA", map[string]int{}, 0, ""}}
+
+	// mode 2: continue previous search (based on console output)
+	// Max pressure after 16 minutes: 638 s={17 59 GG FF map[BB:11 CC:13 DD:3 EE:16 JJ:7] 638 move}
+	// nodes := []State{{17, 59, "GG", "FF", map[string]int{"BB": 11, "CC": 13, "DD": 3, "EE": 16, "JJ": 7}, 638, "move"}} //with inputs1.txt
+	// Max pressure after 16 minutes: 483 s={17 64 MK ZS map[IP:4 OD:11 UF:8 ZJ:14] 483 move}
+	nodes := []State{{17, 64, "MK", "ZS", map[string]int{"IP": 4, "OD": 11, "UF": 8, "ZJ": 14}, 483, "move"}} //with inputs2.txt
+
 	next := []State{}
-	minutes := 25
-	for minute := 0; minute < minutes; minute++ {
+	minutes := 31
+	// for minute := 0; minute < minutes; minute++ {
+	for minute := 17; minute < minutes; minute++ {
 		for _, node := range nodes {
 			next = append(next, expand_search(&node)...)
 		}
