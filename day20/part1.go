@@ -7,12 +7,7 @@ import (
 	"strings"
 )
 
-// search state
-type Coord struct {
-	x, y, z int
-}
-
-// day 18 part 1
+// day 20 part 1
 func main() {
 
 	filePath := os.Args[1]
