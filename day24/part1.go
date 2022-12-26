@@ -47,8 +47,8 @@ func main() {
 	// t1 and t2 are *Tile objects from inside the world.
 	// dest := world.Tile(len(world)-2, len(world[0])-1)
 	// path, distance, found := astar.Path(world.Tile(1, 0), dest)
-	dest := world.Tile(len(world)-2, len(world[0])-1).ToNode()
-	path, distance, found := astar.Path(world.Tile(1, 0).ToNode(), dest)
+	dest := world.Tile(len(world)-2, len(world[0])-1)
+	path, distance, found := astar.Path(world.Tile(1, 0), dest)
 	if !found {
 		fmt.Println("Could not find path")
 	} else {
@@ -65,7 +65,7 @@ func main() {
 func PrintPath(path []astar.Pather) {
 	for i := 0; i < len(path); i++ {
 		x := len(path) - i - 1
-		t, ok := (path[x].(*Node)) //convert with type assertion
+		t, ok := (path[x].(*Tile)) //convert with type assertion
 		if ok {
 			fmt.Printf("%d: %d/%d\n", i, t.X, t.Y)
 		}

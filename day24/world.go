@@ -78,17 +78,11 @@ type Blizzard struct {
 	direction string
 }
 
-type Node struct {
-	X, Y int
-	min  int
-	W    World
-}
-
 var totalNodesExpanded int
 
 // PathNeighbors returns the neighbors of the tile, excluding blockers and
 // tiles off the edge of the board.
-func (t *Node) PathNeighbors() []astar.Pather {
+func (t *Tile) PathNeighbors() []astar.Pather {
 	neighbors := []astar.Pather{}
 	for _, offset := range [][]int{
 		{-1, 0},
@@ -99,14 +93,15 @@ func (t *Node) PathNeighbors() []astar.Pather {
 	} {
 		if n := t.W.Tile(t.X+offset[0], t.Y+offset[1]); n != nil &&
 			n.Kind != KindBlocker &&
-			!n.IsBlocked(t.min+1) {
+			!n.IsBlocked(t.Minute+1) {
 			// if n.X > 1 && n.Y == 4 {
 			// 	continue
 			// }
-			newNode := Node{n.X, n.Y, t.min + 1, n.W}
-			neighbors = append(neighbors, &newNode)
-			// n.Minute++
-			// neighbors = append(neighbors, n)
+			// newTile := Tile{n.Kind, n.X, n.Y, n.W,
+			// 	t.Minute + 1, nil, nil}
+			// neighbors = append(neighbors, &newTile)
+			n.Minute++
+			neighbors = append(neighbors, n)
 		}
 	}
 	totalNodesExpanded += len(neighbors)
@@ -118,15 +113,15 @@ func (t *Node) PathNeighbors() []astar.Pather {
 }
 
 // PathNeighborCost returns the movement cost of the directly neighboring tile.
-func (t *Node) PathNeighborCost(to astar.Pather) float64 {
+func (t *Tile) PathNeighborCost(to astar.Pather) float64 {
 	// toT := to.(*Tile)
 	return 1 //KindCosts[toT.Kind]
 }
 
 // PathEstimatedCost uses Manhattan distance to estimate orthogonal distance
 // between non-adjacent nodes.
-func (t *Node) PathEstimatedCost(to astar.Pather) float64 {
-	toT := to.(*Node)
+func (t *Tile) PathEstimatedCost(to astar.Pather) float64 {
+	toT := to.(*Tile)
 	absX := toT.X - t.X
 	if absX < 0 {
 		absX = -absX
@@ -161,10 +156,6 @@ func (t *Tile) IsBlocked(minute int) bool {
 		b = b || t.BlockedY[minute%t.W.DimY()]
 	}
 	return b
-}
-
-func (t *Tile) ToNode() *Node {
-	return &Node{t.X, t.Y, t.Minute, t.W}
 }
 
 // World is a two dimensional map of Tiles.
@@ -230,7 +221,7 @@ func (w World) RenderPath(path []astar.Pather) string {
 	height := len(w[0])
 	pathLocs := map[string]bool{}
 	for _, p := range path {
-		pT := p.(*Node)
+		pT := p.(*Tile)
 		pathLocs[fmt.Sprintf("%d,%d", pT.X, pT.Y)] = true
 	}
 	rows := make([]string, height)
