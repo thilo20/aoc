@@ -78,11 +78,18 @@ type Blizzard struct {
 	direction string
 }
 
+type Node struct {
+	X, Y int
+	min  int
+	W    World
+	S    Search
+}
+
 var totalNodesExpanded int
 
 // PathNeighbors returns the neighbors of the tile, excluding blockers and
 // tiles off the edge of the board.
-func (t *Tile) PathNeighbors() []astar.Pather {
+func (t *Node) PathNeighbors() []astar.Pather {
 	neighbors := []astar.Pather{}
 	for _, offset := range [][]int{
 		{-1, 0},
@@ -93,15 +100,14 @@ func (t *Tile) PathNeighbors() []astar.Pather {
 	} {
 		if n := t.W.Tile(t.X+offset[0], t.Y+offset[1]); n != nil &&
 			n.Kind != KindBlocker &&
-			!n.IsBlocked(t.Minute+1) {
+			!n.IsBlocked(t.min+1) {
 			// if n.X > 1 && n.Y == 4 {
 			// 	continue
 			// }
-			// newTile := Tile{n.Kind, n.X, n.Y, n.W,
-			// 	t.Minute + 1, nil, nil}
-			// neighbors = append(neighbors, &newTile)
-			n.Minute++
-			neighbors = append(neighbors, n)
+			newNode := t.S.Node(n.X, n.Y, t.min+1)
+			neighbors = append(neighbors, newNode)
+			// n.Minute++
+			// neighbors = append(neighbors, n)
 		}
 	}
 	totalNodesExpanded += len(neighbors)
@@ -113,15 +119,15 @@ func (t *Tile) PathNeighbors() []astar.Pather {
 }
 
 // PathNeighborCost returns the movement cost of the directly neighboring tile.
-func (t *Tile) PathNeighborCost(to astar.Pather) float64 {
+func (t *Node) PathNeighborCost(to astar.Pather) float64 {
 	// toT := to.(*Tile)
 	return 1 //KindCosts[toT.Kind]
 }
 
 // PathEstimatedCost uses Manhattan distance to estimate orthogonal distance
 // between non-adjacent nodes.
-func (t *Tile) PathEstimatedCost(to astar.Pather) float64 {
-	toT := to.(*Tile)
+func (t *Node) PathEstimatedCost(to astar.Pather) float64 {
+	toT := to.(*Node)
 	absX := toT.X - t.X
 	if absX < 0 {
 		absX = -absX
@@ -161,6 +167,7 @@ func (t *Tile) IsBlocked(minute int) bool {
 // World is a two dimensional map of Tiles.
 type World map[int]map[int]*Tile
 type Blizzards []*Blizzard
+type Search map[int]map[int]map[int]*Node
 
 func (b Blizzards) String() string {
 	st := ""
@@ -187,6 +194,31 @@ func (w World) SetTile(t *Tile, x, y int) {
 	t.X = x
 	t.Y = y
 	t.W = w
+}
+
+// Node gets the node for the given coordinates at the given minute.
+func (s Search) Node(x, y, min int) *Node {
+	if s[x] == nil {
+		return nil
+	}
+	if s[x][y] == nil {
+		return nil
+	}
+	return s[x][y][min]
+}
+
+// SetNode sets a node for the given coordinates at the given minute.
+func (s Search) SetNode(t *Node, x, y, min int) {
+	if s[x] == nil {
+		s[x] = map[int]map[int]*Node{}
+	}
+	if s[x][y] == nil {
+		s[x][y] = map[int]*Node{}
+	}
+	s[x][y][min] = t
+	t.X = x
+	t.Y = y
+	t.min = min
 }
 
 // FirstOfKind gets the first tile on the board of a kind, used to get the from
@@ -221,7 +253,7 @@ func (w World) RenderPath(path []astar.Pather) string {
 	height := len(w[0])
 	pathLocs := map[string]bool{}
 	for _, p := range path {
-		pT := p.(*Tile)
+		pT := p.(*Node)
 		pathLocs[fmt.Sprintf("%d,%d", pT.X, pT.Y)] = true
 	}
 	rows := make([]string, height)
@@ -348,4 +380,21 @@ func (w World) DimX() int {
 
 func (w World) DimY() int {
 	return len(w[0]) - 2
+}
+
+// init search space
+func InitSearch(w World, minutes int) Search {
+	s := Search{}
+	for x := 0; x < len(w); x++ {
+		for y := 0; y < len(w[0]); y++ {
+			for min := 0; min <= minutes; min++ {
+				if t := w.Tile(x, y); t != nil && t.Kind != KindBlocker && !t.IsBlocked(min) {
+					s.SetNode(&Node{
+						W: w, S: s,
+					}, x, y, min)
+				}
+			}
+		}
+	}
+	return s
 }
