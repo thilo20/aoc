@@ -36,7 +36,8 @@ func main() {
 	fmt.Println("Parsed blizzards:", blizzards)
 
 	world.ApplyBlizzards(&blizzards)
-	search := InitSearch(world, 20)
+	lastMinute := 274
+	search := InitSearch(world, lastMinute)
 
 	// minutes := []int{0, world.DimX() * world.DimY(),world.DimX(), world.DimY()}
 	minutes := []int{world.DimX() * world.DimY()}
@@ -49,12 +50,13 @@ func main() {
 	// dest := world.Tile(len(world)-2, len(world[0])-1)
 	// path, distance, found := astar.Path(world.Tile(1, 0), dest)
 	// dest := world.Tile(len(world)-2, len(world[0])-1).ToNode()
-	dest := search.Node(len(world)-2, len(world[0])-1, 15)
 	// dest := search.Node(1, 1, 1)
 	// dest := search.Node(2, 0, 1) //must fail, tile is blocked #
 	// dest := search.Node(1, 2, 5) //must fail, tile is blocked >
 	// dest := search.Node(5, 1, 6)
-	// dest := search.Node(5, 1, 6)
+	// dest := search.Node(len(world)-2, len(world[0])-1, 18) //success for inputs2.txt
+	// dest := search.Node(len(world)-2, len(world[0])-1, lastMinute) //success for inputs3? with 2000 minutes :)
+	dest := search.Node(len(world)-2, len(world[0])-1, lastMinute) //success for inputs3? with 2000 minutes :)
 	path, distance, found := astar.Path(search.Node(1, 0, 0), dest)
 	// path, distance, found := astar.Path(world.Tile(1, 0).ToNode(), dest)
 	if !found {
@@ -63,11 +65,11 @@ func main() {
 		fmt.Println("Path found:")
 		fmt.Println(world.RenderPath(path))
 
-		PrintPath(path)
-		fmt.Println("dist:", distance)
+		// PrintPath(path)
+		fmt.Println("dist:", distance, "minutes")
 	}
 
-	fmt.Println(totalNodesExpanded)
+	fmt.Println("search nodes expanded:", totalNodesExpanded)
 }
 
 func PrintPath(path []astar.Pather) {
