@@ -9,24 +9,21 @@ import (
 
 // day 25 part 1
 func main() {
-
 	filePath := os.Args[1]
 	readFile, err := os.Open(filePath)
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	snafu := []string{}
 	sum := 0
 
 	scanner := bufio.NewScanner(readFile)
 	for scanner.Scan() {
 		line := scanner.Text()
-		snafu = append(snafu, line)
 
 		decimal := Decode(line)
-		snafu2 := Encode(decimal)
-		fmt.Printf("%10s\t%10d\t%10s\n", line, decimal, snafu2)
+		snafu := Encode(decimal)
+		fmt.Printf("%10s\t%10d\t%10s\n", line, decimal, snafu)
 		sum += decimal
 	}
 	readFile.Close()
@@ -62,9 +59,19 @@ func Encode(decimal int) string {
 	res := ""
 	//base5
 	for decimal > 0 {
-		res += fmt.Sprint(decimal % 5)
+		rem := decimal % 5
 		decimal /= 5
-
+		if rem < 3 {
+			res += fmt.Sprint(rem)
+		} else {
+			switch rem {
+			case 4:
+				res += "-"
+			case 3:
+				res += "="
+			}
+			decimal++
+		}
 	}
 	return Reverse(res)
 }
