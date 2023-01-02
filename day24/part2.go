@@ -8,8 +8,8 @@ import (
 	"github.com/beefsack/go-astar"
 )
 
-// day 24 part 1
-func main() {
+// day 24 part 2
+func main2() {
 
 	filePath := os.Args[1]
 	readFile, err := os.Open(filePath)
@@ -39,12 +39,12 @@ func main() {
 	lastMinute := 1000
 	search := InitSearch(world, lastMinute)
 
-	// minutes := []int{0, world.DimX() * world.DimY(),world.DimX(), world.DimY()}
-	minutes := []int{world.DimX() * world.DimY()}
-	// for i := 0; i < 10; i++ {
-	for _, i := range minutes {
-		fmt.Printf("\nWorld at minute %d:\n%s\n", i, world.RenderWorld(i))
-	}
+	// // minutes := []int{0, world.DimX() * world.DimY(),world.DimX(), world.DimY()}
+	// minutes := []int{world.DimX() * world.DimY()}
+	// // for i := 0; i < 10; i++ {
+	// for _, i := range minutes {
+	// 	fmt.Printf("\nWorld at minute %d:\n%s\n", i, world.RenderWorld(i))
+	// }
 
 	// t1 and t2 are *Tile objects from inside the world.
 	// dest := world.Tile(len(world)-2, len(world[0])-1)
@@ -57,9 +57,15 @@ func main() {
 	// dest := search.Node(len(world)-2, len(world[0])-1, 18) //success for inputs2.txt
 	// dest := search.Node(len(world)-2, len(world[0])-1, lastMinute) //success for inputs3? with 2000 minutes :)
 	// dest := search.Node(len(world)-2, len(world[0])-1, lastMinute) //success for inputs3? with 274 minutes :)
-	start := search.Node(1, 0, 0)
-	dest := search.Node(len(world)-2, len(world[0])-1, 274)
-	path, distance, found := astar.Path(start, dest)
+	// start := search.Node(1, 0, 0)
+	// dest := search.Node(len(world)-2, len(world[0])-1, 274)
+	dest2 := search.Node(1, 0, 274+294)
+	// dest3 := search.Node(len(world)-2, len(world[0])-1, 18+23+13)
+	dest3 := search.Node(len(world)-2, len(world[0])-1, 274+294+271) //839 total :)
+	// path, distance, found := astar.Path(start, dest)
+	// path, distance, found := astar.Path(dest, dest2)
+	path, distance, found := astar.Path(dest2, dest3)
+	// path, distance, found := astar.Path(world.Tile(1, 0).ToNode(), dest)
 	if !found {
 		fmt.Println("Could not find path")
 	} else {
@@ -73,7 +79,7 @@ func main() {
 	fmt.Println("search nodes expanded:", totalNodesExpanded)
 }
 
-func PrintPath(path []astar.Pather) {
+func PrintPath2(path []astar.Pather) {
 	for i := 0; i < len(path); i++ {
 		x := len(path) - i - 1
 		t, ok := (path[x].(*Node)) //convert with type assertion
