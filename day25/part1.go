@@ -59,5 +59,20 @@ func Decode(snafu string) int {
 
 // decode snafu to decimal value
 func Encode(decimal int) string {
-	return "210-="
+	res := ""
+	//base5
+	for decimal > 0 {
+		res += fmt.Sprint(decimal % 5)
+		decimal /= 5
+
+	}
+	return Reverse(res)
+}
+
+func Reverse(s string) string {
+	runes := []rune(s)
+	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
+		runes[i], runes[j] = runes[j], runes[i]
+	}
+	return string(runes)
 }
