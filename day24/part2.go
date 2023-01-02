@@ -9,7 +9,7 @@ import (
 )
 
 // day 24 part 2
-func main2() {
+func main() {
 
 	filePath := os.Args[1]
 	readFile, err := os.Open(filePath)
@@ -79,7 +79,7 @@ func main2() {
 	fmt.Println("search nodes expanded:", totalNodesExpanded)
 }
 
-func PrintPath2(path []astar.Pather) {
+func PrintPath(path []astar.Pather) {
 	for i := 0; i < len(path); i++ {
 		x := len(path) - i - 1
 		t, ok := (path[x].(*Node)) //convert with type assertion
