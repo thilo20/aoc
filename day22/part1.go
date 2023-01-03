@@ -3,11 +3,37 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"math"
 	"os"
 	"regexp"
 	"strconv"
+	"strings"
 )
+
+type Mmap map[int]string
+
+func (m Mmap) Get(x, y int) string {
+	if y < 0 || y >= len(m) {
+		return " "
+	}
+	if x < 0 || x >= len(m[y]) {
+		return " "
+	}
+	return string(m[y][x])
+}
+
+func (m Mmap) GetWrap(x, y, dir int) string {
+	switch dir {
+	case 0:
+		return m.Get(x+1, y)
+	case 1:
+		return m.Get(x, y+1)
+	case 2:
+		return m.Get(x-1, y)
+	case 3:
+		return m.Get(x, y-1)
+	}
+	return ""
+}
 
 // day 22 part 1
 func main() {
@@ -17,7 +43,7 @@ func main() {
 		fmt.Println(err)
 	}
 
-	mmap := make(map[int]string, 0)
+	mmap := make(Mmap, 0)
 	i := 0
 
 	scanner := bufio.NewScanner(readFile)
@@ -31,6 +57,11 @@ func main() {
 		mmap[i] = line
 		i++
 	}
+
+	// turtle
+	x, y, dir := 0, 0, 0
+	x = strings.Index(mmap[0], ".")
+
 	// read commands
 	if scanner.Scan() {
 		line := scanner.Text()
@@ -40,9 +71,6 @@ func main() {
 		if m == nil {
 			panic("no match")
 		}
-
-		// turtle
-		x, y, dir := 0, 0, 0
 
 		for _, cmd := range m {
 			switch cmd {
@@ -58,16 +86,7 @@ func main() {
 				}
 			default:
 				steps, _ := strconv.ParseInt(cmd, 10, 64)
-				switch dir {
-				case 0:
-					x += int(steps)
-				case 2:
-					x -= int(steps)
-				case 1:
-					y += int(steps)
-				case 3:
-					y -= int(steps)
-				}
+				x, y = move(x, y, dir, int(steps), mmap)
 			}
 			fmt.Printf("cmd:%s x=%d y=%d dir=%d\n", cmd, x, y, dir)
 		}
@@ -75,56 +94,71 @@ func main() {
 
 	readFile.Close()
 
+	row := y + 1
+	column := x + 1
+	facing := dir
+	// The final password is the sum of 1000 times the row, 4 times the column, and the facing.
+	fmt.Println("final password:", 1000*row+4*column+facing)
 }
 
-// decode snafu to decimal value
-func Decode(snafu string) int {
-	val := 0
-	for i := 0; i < len(snafu); i++ {
-		mult := int(math.Pow(5, float64(i)))
-		char := snafu[len(snafu)-1-i]
-		switch char {
-		case '2':
-			val += 2 * mult
-		case '1':
-			val += 1 * mult
-		case '0':
-			val += 0 * mult
-		case '-':
-			val -= 1 * mult
-		case '=':
-			val -= 2 * mult
-		}
-	}
-	return val
-}
-
-// decode snafu to decimal value
-func Encode(decimal int) string {
-	res := ""
-	//base5
-	for decimal > 0 {
-		rem := decimal % 5
-		decimal /= 5
-		if rem < 3 {
-			res += fmt.Sprint(rem)
-		} else {
-			switch rem {
-			case 4:
-				res += "-"
+func move(x, y, dir int, steps int, mmap Mmap) (int, int) {
+	for i := 0; i < steps; i++ {
+		field := mmap.GetWrap(x, y, dir)
+		if field == "." { // free
+			switch dir {
+			case 0:
+				x++
+			case 2:
+				x--
+			case 1:
+				y++
 			case 3:
-				res += "="
+				y--
 			}
-			decimal++
+		} else if field == "#" { // blocked
+			break
+		} else if field == " " { // wrap
+			switch dir {
+			case 0: // check row from left
+				for n := 0; n < x; n++ {
+					switch mmap.Get(n, y) {
+					case "#":
+						goto BLOCKED
+					case ".":
+						x = n
+					}
+				}
+			case 2: // check row from right
+				for n := len(mmap[y]) - 1; n > x; n-- {
+					switch mmap.Get(n, y) {
+					case "#":
+						goto BLOCKED
+					case ".":
+						x = n
+					}
+				}
+			case 1: // check column from top
+				for n := 0; n < y; n++ {
+					switch mmap.Get(x, n) {
+					case "#":
+						goto BLOCKED
+					case ".":
+						y = n
+					}
+				}
+			case 3: // check column from bottom
+				for n := len(mmap) - 1; n > y; n-- {
+					switch mmap.Get(x, n) {
+					case "#":
+						goto BLOCKED
+					case ".":
+						y = n
+					}
+				}
+			}
+		BLOCKED:
 		}
-	}
-	return Reverse(res)
-}
 
-func Reverse(s string) string {
-	runes := []rune(s)
-	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
-		runes[i], runes[j] = runes[j], runes[i]
 	}
-	return string(runes)
+	return x, y
 }
