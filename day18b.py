@@ -31,9 +31,9 @@ dimx=maxx-minx+1
 print(dimx, dimy)
 image=[]
 for y in range(dimy):
-    image.append([0]*dimx)
+    image.append([False]*dimx)
 for dig in plan:
-    image[dig[1]-miny][dig[0]-minx]=1
+    image[dig[1]-miny][dig[0]-minx]=True
 
 total=sum([sum(x) for x in image])
 print(total)
@@ -82,7 +82,7 @@ class Solution(object):
 solution=Solution()
 sr = int(dimx/2)
 sc = int(dimy/2)
-newColor = 1
+newColor = True
 image=solution.floodFill(image, sr, sc, newColor)
 
 total=sum([sum(x) for x in image])
