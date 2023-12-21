@@ -3,89 +3,38 @@ import re
 total=0
 
 plan=[] # (x,y) digged out
+points=[] # (x,y) polygon points
 start=(0,0)
 pos=start
+border=0 # length of border (area boundary)
 
 dir={'3': (0,-1), '1': (0,1), '2': (-1,0), '0': (1,0)}
 
 # Opening file
-file = open('day18-test.txt', 'r')
+file = open('day18.txt', 'r')
 for line in file:
     command=re.findall("#(.{5})(.)", line)
     d=dir[command[0][1]]
     steps=int(command[0][0], 16)
-    while steps>0:
-        #pos+=d
-        pos=tuple(sum(x) for x in zip(pos, d))
-        plan.append(pos)
-        steps-=1
+    border+=steps
+    pos=(pos[0]+d[0]*steps, pos[1]+d[1]*steps) # tuple math sucks, python ;)
+    points.append(pos)
 file.close()
 
-# calc bounds and create image
-minx=min(map(lambda x:x[0],plan))
-miny=min(map(lambda x:x[1],plan))
-maxx=max(map(lambda x:x[0],plan))
-maxy=max(map(lambda x:x[1],plan))
-dimy=maxy-miny+1
-dimx=maxx-minx+1
-print(dimx, dimy)
-image=[]
-for y in range(dimy):
-    image.append([False]*dimx)
-for dig in plan:
-    image[dig[1]-miny][dig[0]-minx]=True
-
-total=sum([sum(x) for x in image])
-print(total)
-
-# find start pos
-# for i in range(dimx):
-#      if image[0][i]>0: print(i)
-# 127,1
-
-# https://yuminlee2.medium.com/flood-seed-fill-algorithm-21fba08a46e#9537
-from collections import deque
-class Solution(object):
-    def floodFill(self, image, sr, sc, newColor):
-        """
-        :type image: List[List[int]]
-        :type sr: int
-        :type sc: int
-        :type newColor: int
-        :rtype: List[List[int]]
-        """
-        oldColor = image[sr][sc]
-        if oldColor == newColor:
-            return image
+# https://github.com/derailed-dash/Advent-of-Code/blob/master/src/AoC_2023/Dazbo's_Advent_of_Code_2023.ipynb
+def shoelace_area(polygon: list[tuple[int,int]]) -> int:
+    """ calc area with triangle formula, see https://en.wikipedia.org/wiki/Shoelace_formula """
+    total = 0
+    for i, (x,y) in enumerate(polygon):
+        next_index = (i+1) % len(polygon)
+        prev_index = i-1
+        total += x*(polygon[next_index][1] - polygon[prev_index][1])
         
-        visited = set([(sr, sc)])
-        queue = deque([(sr, sc)])
+    return abs(total) // 2
 
-        directions = [(-1, 0), (0, 1), (1, 0), (0, -1)]
-        while len(queue) > 0:
-            # print("queue", queue)
-            currentRow, currentCol = queue.popleft()
-            image[currentRow][currentCol] = newColor
-            for rowOffset, colOffset in directions:
-                neighborRow = currentRow + rowOffset
-                neighborCol = currentCol + colOffset
-                pos = (neighborRow, neighborCol)
-                if self.isInBounds(image, neighborRow, neighborCol) and pos not in visited and image[neighborRow][neighborCol] == oldColor:
-                    visited.add(pos)
-                    queue.append((neighborRow, neighborCol))
-        
-        return image
-    
-    def isInBounds(self, image, row, col):
-        return 0 <= row < len(image) and 0 <= col < len(image[0])
 
-solution=Solution()
-sr = int(dimx/2)
-sc = int(dimy/2)
-newColor = True
-image=solution.floodFill(image, sr, sc, newColor)
+print("area border:   ", border)
+print("shoelace area: ", shoelace_area(points))
 
-total=sum([sum(x) for x in image])
+total=shoelace_area(points)+border//2+1
 print(total)
-
-# 191 GB memory!!!

@@ -2,23 +2,38 @@
 total=0
 
 plan=[] # (x,y) digged out
+points=[] # (x,y) polygon points
 start=(0,0)
 pos=start
+border=0 # length of border (area boundary)
 
 dir={'U': (0,-1), 'D': (0,1), 'L': (-1,0), 'R': (1,0)}
 
 # Opening file
-file = open('day18.txt', 'r')
+file = open('day18-test.txt', 'r')
 for line in file:
     command=line.split()
     d=dir[command[0]]
     steps=int(command[1])
+    border+=steps
     while steps>0:
         #pos+=d
         pos=tuple(sum(x) for x in zip(pos, d))
         plan.append(pos)
         steps-=1
+    points.append(pos)
 file.close()
+
+# https://github.com/derailed-dash/Advent-of-Code/blob/master/src/AoC_2023/Dazbo's_Advent_of_Code_2023.ipynb
+def shoelace_area(polygon: list[tuple[int,int]]) -> int:
+    """ calc area with triangle formula, see https://en.wikipedia.org/wiki/Shoelace_formula """
+    total = 0
+    for i, (x,y) in enumerate(polygon):
+        next_index = (i+1) % len(polygon)
+        prev_index = i-1
+        total += x*(polygon[next_index][1] - polygon[prev_index][1])
+        
+    return abs(total) // 2
 
 # calc bounds and create image
 minx=min(map(lambda x:x[0],plan))
@@ -80,8 +95,15 @@ class Solution(object):
 solution=Solution()
 sr = 1
 sc = 127
+# sc=1
 newColor = 1
 image=solution.floodFill(image, sr, sc, newColor)
 
 total=sum([sum(x) for x in image])
+print(total)
+
+print("area border:   ", border)
+print("shoelace area: ", shoelace_area(points))
+
+total=shoelace_area(points)+border//2+1
 print(total)
