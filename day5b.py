@@ -1,7 +1,7 @@
 import re
 
 # Opening file
-file = open('day5-test.txt', 'r')
+file = open('day5.txt', 'r')
 total = 0
 
 to_int = lambda a : int(a)
@@ -102,8 +102,8 @@ def resolve_seed(location, mappings):
     number=location
     for item in reversed(mappings):
         source=resolve_source(number, item["map"])
-        msg="{} {}->{}"
-        print(msg.format(item["name"], number, source))
+        # msg="{} {}->{}"
+        # print(msg.format(item["name"], number, source))
         number=source
     return number
 
