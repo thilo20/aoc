@@ -20,7 +20,7 @@ def slide_rocks_north(grid):
         new_grid.append("#".join(ordered_rows)) #! use join to aggregate sorted sections
         #! nice: multiple separators get preserved, ordered_rows will contain "" (empty strings)
 
-    return tuple(list(map("".join, zip(*new_grid)))) #! transpose again (undo)
+    return list(map("".join, zip(*new_grid))) #! transpose again (undo)
 
 
 def print_grid(grid):
@@ -43,7 +43,7 @@ solution1 = 0
 solution2 = 0
 
 grid_slided = slide_rocks_north(input)
-print_grid(grid_slided)
+# print_grid(grid_slided)
 solution1 = sum(
     row.count("O") * (len(grid_slided) - i) for i, row in enumerate(grid_slided)
     #! wow statement!
@@ -51,14 +51,14 @@ solution1 = sum(
     # 2. count() gives mass (rocks in whole row)
     # 3. len-i gives weight factor (lever)
     # 4. short hand for loop style, based on List Comprehension
-    # impossible to debug :(
+    # debug line with locals and watches :)
 )
 
 print("Solution 1:", solution1)
 # uncomment for sol.1 time comparison
 # exit()
 
-seen = {input} #! set, unordered and unique
+# seen = {input} #! set, unordered and unique
 seen_list = [input] #! list, ordered
 
 grid_cycle = input
@@ -66,9 +66,9 @@ for i in range(CYCLES):
     grid_cycle = cycle(grid_cycle)
     # print_grid(grid_cycle)
 
-    if grid_cycle in seen:
+    if grid_cycle in seen_list:
         break
-    seen.add(grid_cycle)
+    # seen.add(grid_cycle)
     seen_list.append(grid_cycle)
 
 first_cycle_grid_index = seen_list.index(grid_cycle)
@@ -90,3 +90,5 @@ print("Solution 2:", solution2)
 # timings:
 # python3 day14b.py  0.53s user 0.01s system 99% cpu 0.547 total
 # wow: it looks like 'transpose grid' costs nothing!
+
+#! tuple/list conversions don't change results, timings unaffected (lists only: cpu 0.534)
