@@ -7,7 +7,7 @@
 # area calculation dismissed.. too complicated as "squeezing between pipes is also allowed" (but area would be >0)
 # instead, we can check if a grid tile is inside the polygon (and count them)
 
-with open("day10-test.txt", "r") as file:
+with open("day10.txt", "r") as file:
     grid = tuple(file.read().splitlines())
 
 # locate start 'S'
@@ -56,7 +56,10 @@ def connected(item):
 
 neighbors={'n':(0,-1), 's':(0,1), 'w':(-1,0), 'e':(1,0)}
 openlist=[*zip([start]*4, neighbors)]
-              
+
+# - collect loop coordinates
+loop=[start]
+
 step = 0
 while len(openlist)>0:
     step += 1
@@ -67,6 +70,7 @@ while len(openlist)>0:
         if neighbor is not None:                   
             newlist.append(neighbor)
     openlist=newlist
+    [loop.append(item[0]) for item in newlist]
 
     # test position match
     if len(set(map(lambda item: item[0], openlist)))<2:
@@ -74,3 +78,18 @@ while len(openlist)>0:
 
 print(openlist)
 print(step)
+
+# - convert to polygon representation
+from shapely.geometry import Polygon, Point
+coords=[loop[0], *loop[1::2], *loop[-1:0:-2], loop[0]]
+pgon = Polygon(coords)
+print(pgon.area, pgon.is_ring)
+
+# - calculate area
+count = 0
+for y in range(len(grid)):
+    for x in range(len(grid[0])):
+        if (x, y) not in coords and pgon.contains(Point(x, y)):
+            count += 1
+
+print(count)
