@@ -78,18 +78,27 @@ while len(openlist)>0:
 
 print(openlist)
 print(step)
+print("loop length: ", len(loop))
+print("grid size: {} ({} x {})".format(len(grid)*len(grid[0]), len(grid[0]), len(grid)))
+print("max.points in/outside: ", len(grid)*len(grid[0])-len(loop))
 
 # - convert to polygon representation
 from shapely.geometry import Polygon, Point
 coords=[loop[0], *loop[1::2], *loop[-1:0:-2], loop[0]]
 pgon = Polygon(coords)
-print(pgon.area, pgon.is_ring)
+print(pgon.area, pgon.is_simple)
 
 # - calculate area
 count = 0
 for y in range(len(grid)):
     for x in range(len(grid[0])):
         if (x, y) not in coords and pgon.contains(Point(x, y)):
+        # if pgon.contains(Point(x, y)) and (x, y) not in coords:
+        # if pgon.contains(Point(x, y)): # same result, so points on polygon border don't count as 'contained'
             count += 1
 
 print(count)
+
+# timings
+# python3 day10b.py  17.42s user 0.39s system 105% cpu 16.871 total
+# python3 day10b.py  58.52s user 0.44s system 101% cpu 58.043 total (flipped conditions, line 96)
