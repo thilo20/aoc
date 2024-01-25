@@ -1,0 +1,53 @@
+thilo@Thilos-MBP day12 %  cd /Users/thilo/repo/advent/day12 ; /usr/bin/env GOPATH=/Users/thilo/go /Users/thilo/go/bin/dlv dap --check-go
+-version=false --client-addr=:57525 
+Parsed map:
+F.......
+........
+.....T..
+........
+........
+possible starting tiles:  6
+0 Found path with distance  31
+1 Found path with distance  30
+2 Found path with distance  31
+3 Found path with distance  30
+4 Found path with distance  29
+5 Found path with distance  30
+Path found:
+F..●●●●●
+...●●●●●
+...●●●●●
+.●●●●●●●
+●●●●●●●●
+0: a 0/4
+1: b 1/4
+2: c 1/3
+3: c 2/3
+4: d 2/4
+5: e 3/4
+6: f 4/4
+7: g 5/4
+8: h 6/4
+9: i 7/4
+10: j 7/3
+11: k 7/2
+12: l 7/1
+13: m 7/0
+14: n 6/0
+15: o 5/0
+16: p 4/0
+17: q 3/0
+18: r 3/1
+19: s 3/2
+20: t 3/3
+21: u 4/3
+22: v 5/3
+23: w 6/3
+24: x 6/2
+25: x 6/1
+26: x 5/1
+27: y 4/1
+28: z 4/2
+29: z 5/2
+dist: 29
+thilo@Thilos-MBP day12 % 

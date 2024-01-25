@@ -1,0 +1,46 @@
+thilo@Thilos-MBP day16 %  cd /Users/thilo/repo/advent/day16 ; /usr/bin/env GOPATH=/Users/thilo/go /Users/thilo/go/bin/dlv dap --check-go
+-version=false --client-addr=:60929 
+tunnels: map[AA:[DD II BB] BB:[CC AA] CC:[DD BB] DD:[CC AA EE] EE:[FF DD] FF:[EE GG] GG:[FF HH] HH:[GG] II:[AA JJ] JJ:[II]]
+flow rates: map[BB:13 CC:2 DD:20 EE:3 HH:22 JJ:21]
+minute: 0 nodes: 1 next: 3
+Max pressure after 0 minutes: 0 s={0 0   map[] 0 }
+minute: 1 nodes: 3 next: 9
+Max pressure after 1 minutes: 0 s={0 0   map[] 0 }
+minute: 2 nodes: 9 next: 27
+Max pressure after 2 minutes: 20 s={3 20 CC DD map[DD:true] 20 move}
+minute: 3 nodes: 27 next: 80
+Max pressure after 3 minutes: 40 s={4 20 CC CC map[DD:true] 40 open}
+minute: 4 nodes: 80 next: 237
+Max pressure after 4 minutes: 63 s={5 23 FF EE map[DD:true EE:true] 63 move}
+minute: 5 nodes: 237 next: 702
+Max pressure after 5 minutes: 93 s={6 33 CC BB map[BB:true DD:true] 93 move}
+minute: 6 nodes: 702 next: 2058
+Max pressure after 6 minutes: 126 s={7 33 CC CC map[BB:true DD:true] 126 open}
+minute: 7 nodes: 2058 next: 5931
+Max pressure after 7 minutes: 162 s={8 41 AA II map[DD:true JJ:true] 162 move}
+minute: 8 nodes: 5931 next: 16796
+Max pressure after 8 minutes: 203 s={9 41 DD AA map[DD:true JJ:true] 203 move}
+minute: 9 nodes: 16796 next: 46860
+Max pressure after 9 minutes: 246 s={10 54 II JJ map[BB:true DD:true JJ:true] 246 move}
+minute: 10 nodes: 46860 next: 129145
+Max pressure after 10 minutes: 300 s={11 54 AA II map[BB:true DD:true JJ:true] 300 move}
+minute: 11 nodes: 129145 next: 352218
+Max pressure after 11 minutes: 354 s={12 54 DD AA map[BB:true DD:true JJ:true] 354 move}
+minute: 12 nodes: 352218 next: 951600
+Max pressure after 12 minutes: 408 s={13 54 CC DD map[BB:true DD:true JJ:true] 408 move}
+minute: 13 nodes: 951600 next: 2548513
+Max pressure after 13 minutes: 464 s={14 56 AA DD map[BB:true CC:true DD:true JJ:true] 464 move}
+minute: 14 nodes: 2548513 next: 6769215
+Max pressure after 14 minutes: 520 s={15 56 II AA map[BB:true CC:true DD:true JJ:true] 520 move}
+minute: 15 nodes: 6769215 next: 17841894
+Max pressure after 15 minutes: 579 s={16 59 FF EE map[BB:true CC:true DD:true EE:true JJ:true] 579 move}
+minute: 16 nodes: 17841894 next: 46691452
+Max pressure after 16 minutes: 638 s={17 59 GG FF map[BB:true CC:true DD:true EE:true JJ:true] 638 move}
+all valves opened! min: 18 max flow: 81
+minute: 17 nodes: 46691452 next: 121385608
+Max pressure after 17 minutes: 700 s={18 76 GG HH map[BB:true DD:true HH:true JJ:true] 700 move}
+all valves opened! min: 18 max flow: 81
+
+12*81+700=1672
+target:1651
+delta:21 (valve JJ)
