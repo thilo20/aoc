@@ -31,9 +31,6 @@ class Node:
         
     def __lt__(self, other) -> bool:
         return self.cost+self.heu < other.cost+other.heu
-        
-    def addcost(self, cost):
-        self.cost+=cost
     
     def parents(self):
         i=0
@@ -57,7 +54,7 @@ def expand(node, grid):
 
     moves = list(filter(lambda n: on_grid(n.x, n.y, grid), moves))
     for m in moves:
-        m.addcost(grid[m.y][m.x])
+        m.cost+=grid[m.y][m.x]
         m.heu=dist(m.x, m.y, grid)
     return moves
 
