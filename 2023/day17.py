@@ -18,6 +18,7 @@ class Node:
       self.dir=dir
       self.cost=cost
       self.heu=0
+      self.samedir=0
 
     def __str__(self):
         return f"{self.x} {self.y} {self.dir} {self.cost} {self.heu})"
@@ -56,6 +57,10 @@ def expand(node, grid):
     for m in moves:
         m.cost+=grid[m.y][m.x]
         m.heu=dist(m.x, m.y, grid)
+        if node.dir==m.dir:
+            m.samedir=node.samedir+1
+
+    moves = list(filter(lambda n: n.samedir<3, moves))
     return moves
 
 def on_grid(x, y, grid):
