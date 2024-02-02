@@ -83,6 +83,7 @@ while len(openlist)>0 :
 
     if node.x==dest.x and node.y==dest.y:
         print("cost=", node.cost)
+        total=node.cost
         break
 
     next=expand(node, grid)
@@ -104,6 +105,3 @@ msg="open: {} closed: {}"
 print(msg.format(len(openlist), len(closedlist)))
 
 print(total)
-
-    # "git.path": "/usr/bin/git",
-    # "git.enabled": true
