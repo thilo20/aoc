@@ -48,12 +48,12 @@ def expand(node, grid):
     moves=[]
     # init all 4 moves
     moves.append(Node(node, node.x+1, node.y, '>', node.cost))
-    # moves.append(Node(node, node.x-1, node.y, '<', node.cost))
+    moves.append(Node(node, node.x-1, node.y, '<', node.cost))
     moves.append(Node(node, node.x, node.y+1, 'v', node.cost))
-    # moves.append(Node(node, node.x, node.y-1, '^', node.cost))
+    moves.append(Node(node, node.x, node.y-1, '^', node.cost))
     # remove opposite direction
     opposite={ '>':1, '<':0, 'v':3, '^':2}
-    # moves.pop(opposite[node.dir])
+    moves.pop(opposite[node.dir])
 
     moves = list(filter(lambda n: on_grid(n.x, n.y, grid), moves))
     for m in moves:
