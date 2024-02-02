@@ -5,7 +5,7 @@ total=0
 grid=[] # store tile(x,y) -> grid[y][x]
 
 # Opening file
-file = open('2023/day17-test.txt', 'r')
+file = open('2023/day17.txt', 'r')
 for line in file:
     grid.append(list(map(lambda x: int(x), re.findall("\d", line))))
 file.close()
@@ -24,13 +24,15 @@ class Node:
         return f"{self.x} {self.y} {self.dir} {self.cost} {self.heu})"
     
     def __eq__(self, other: object) -> bool:
-        """ compare attributes x,y,dir """
+        """ compare attributes x,y,dir,samedir """
         if isinstance(other, self.__class__):
-            return (self.x == other.x) and (self.y == other.y) and (self.dir == other.dir)
+            return (self.x == other.x) and (self.y == other.y) and (self.dir == other.dir) and (self.samedir == other.samedir)
         else:
             return False
         
     def __lt__(self, other) -> bool:
+        if self.cost+self.heu == other.cost+other.heu:
+            return self.heu < other.heu
         return self.cost+self.heu < other.cost+other.heu
     
     def parents(self):
@@ -46,21 +48,21 @@ def expand(node, grid):
     moves=[]
     # init all 4 moves
     moves.append(Node(node, node.x+1, node.y, '>', node.cost))
-    moves.append(Node(node, node.x-1, node.y, '<', node.cost))
+    # moves.append(Node(node, node.x-1, node.y, '<', node.cost))
     moves.append(Node(node, node.x, node.y+1, 'v', node.cost))
-    moves.append(Node(node, node.x, node.y-1, '^', node.cost))
+    # moves.append(Node(node, node.x, node.y-1, '^', node.cost))
     # remove opposite direction
     opposite={ '>':1, '<':0, 'v':3, '^':2}
-    moves.pop(opposite[node.dir])
+    # moves.pop(opposite[node.dir])
 
     moves = list(filter(lambda n: on_grid(n.x, n.y, grid), moves))
     for m in moves:
         m.cost+=grid[m.y][m.x]
-        m.heu=dist(m.x, m.y, grid)
+        m.heu=dist(m.x, m.y, grid)*3
         if node.dir==m.dir:
             m.samedir=node.samedir+1
 
-    moves = list(filter(lambda n: n.samedir<3, moves))
+    # moves = list(filter(lambda n: n.samedir<3, moves))
     return moves
 
 def on_grid(x, y, grid):
@@ -78,6 +80,7 @@ def dist(x, y, grid):
 max=len(grid)-1
 start=Node(None, 0,0,'>',0)
 dest=Node(None, max,max,'',-1)
+# dest=Node(None, 20,20,'',-1)
 
 openlist=[] # store x,y,dir,cost
 # openlist.append( start )
@@ -88,6 +91,7 @@ closedlist=[]
 while len(openlist)>0 :
     # node=openlist.pop()
     node=heapq.heappop(openlist)
+    # heapq.heapify(openlist)
 
     if node.x==dest.x and node.y==dest.y:
         print("cost=", node.cost)
@@ -112,5 +116,5 @@ while len(openlist)>0 :
 
 msg="open: {} closed: {}"
 print(msg.format(len(openlist), len(closedlist)))
-
+print(f"steps: {node.parents()}")
 print(total)

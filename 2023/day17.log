@@ -1,0 +1,45 @@
+with samedir=3 restriction:
+thilo@Thilos-MBP aoc %  cd /Users/thilo/repo/aoc ; /usr/bin/env /usr/local/bin/python3 /Users/thilo/.vscode/extensions/m
+s-python.python-2022.20.2/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher 56934 -- /Users/thilo/repo/aoc/2
+023/day17.py 
+cost= 102
+open: 20024 closed: 1476
+102
+
+allow samedir=inf:
+thilo@Thilos-MBP aoc %  cd /Users/thilo/repo/aoc ; /usr/bin/env /usr/local/bin/python3 /Users/thilo/.vscode/extensions/m
+s-python.python-2022.20.2/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher 56947 -- /Users/thilo/repo/aoc/2
+023/day17.py 
+cost= 78
+open: 10555 closed: 2013
+78
+
+Restriction 'samedir=3' means way more openlist nodes to test!
+Try full data without restriction first..
+
+reduce problem size:
+make dest Node x=20,y=20
+improve __lt__: 
+    prefer smaller heu value (more greedy to target!)
+
+thilo@Thilos-MBP aoc %  cd /Users/thilo/repo/aoc ; /usr/bin/env /usr/local/bin/python3 /Users/thilo/.vscode/extensions/m
+s-python.python-2022.20.2/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher 57095 -- /Users/thilo/repo/aoc/2
+023/day17.py 
+cost= 71
+open: 12518 closed: 8822
+steps: 40
+71
+thilo@Thilos-MBP aoc %  cd /Users/thilo/repo/aoc ; /usr/bin/env /usr/local/bin/python3 /Users/thilo/.vscode/extensions/m
+s-python.python-2022.20.2/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher 57105 -- /Users/thilo/repo/aoc/2
+023/day17.py 
+cost= 71
+open: 2230 closed: 8268
+steps: 40
+71
+
+full data, only >v and samedir=inf
+heu*3 gives:
+cost= 750
+open: 4135 closed: 17166
+steps: 280
+750
