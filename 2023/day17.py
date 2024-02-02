@@ -1,4 +1,5 @@
 import re
+import heapq
 
 total=0
 grid=[] # store tile(x,y) -> grid[y][x]
@@ -27,6 +28,9 @@ class Node:
             return (self.x == other.x) and (self.y == other.y) and (self.dir == other.dir)
         else:
             return False
+        
+    def __lt__(self, other) -> bool:
+        return self.cost+self.heu < other.cost+other.heu
         
     def addcost(self, cost):
         self.cost+=cost
@@ -74,12 +78,14 @@ start=Node(None, 0,0,'>',0)
 dest=Node(None, max,max,'',-1)
 
 openlist=[] # store x,y,dir,cost
-openlist.append( start )
+# openlist.append( start )
+heapq.heappush(openlist, start)
 
 closedlist=[]
 
 while len(openlist)>0 :
-    node=openlist.pop()
+    # node=openlist.pop()
+    node=heapq.heappop(openlist)
 
     if node.x==dest.x and node.y==dest.y:
         print("cost=", node.cost)
@@ -90,7 +96,8 @@ while len(openlist)>0 :
     
     for n in next:
         if n not in closedlist: 
-            openlist.append(n)
+            # openlist.append(n)
+            heapq.heappush(openlist, n)
         else:
             i = closedlist.index(n)
             n2=closedlist[i]
