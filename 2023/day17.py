@@ -31,9 +31,10 @@ class Node:
             return False
         
     def __lt__(self, other) -> bool:
-        if self.cost+self.heu == other.cost+other.heu:
+        """ low heuristic value means close to target. high priority, compare lower """
+        if self.heu != other.heu:
             return self.heu < other.heu
-        return self.cost+self.heu < other.cost+other.heu
+        return self.cost < other.cost
     
     def parents(self):
         i=0
@@ -48,21 +49,21 @@ def expand(node, grid):
     moves=[]
     # init all 4 moves
     moves.append(Node(node, node.x+1, node.y, '>', node.cost))
-    # moves.append(Node(node, node.x-1, node.y, '<', node.cost))
+    moves.append(Node(node, node.x-1, node.y, '<', node.cost))
     moves.append(Node(node, node.x, node.y+1, 'v', node.cost))
-    # moves.append(Node(node, node.x, node.y-1, '^', node.cost))
+    moves.append(Node(node, node.x, node.y-1, '^', node.cost))
     # remove opposite direction
     opposite={ '>':1, '<':0, 'v':3, '^':2}
-    # moves.pop(opposite[node.dir])
+    moves.pop(opposite[node.dir])
 
     moves = list(filter(lambda n: on_grid(n.x, n.y, grid), moves))
     for m in moves:
         m.cost+=grid[m.y][m.x]
-        m.heu=dist(m.x, m.y, grid)*3
+        m.heu=dist(m.x, m.y, grid)
         if node.dir==m.dir:
             m.samedir=node.samedir+1
 
-    # moves = list(filter(lambda n: n.samedir<3, moves))
+    moves = list(filter(lambda n: n.samedir<3, moves))
     return moves
 
 def on_grid(x, y, grid):

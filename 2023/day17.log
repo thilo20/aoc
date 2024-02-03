@@ -43,3 +43,16 @@ cost= 750
 open: 4135 closed: 17166
 steps: 280
 750
+
+repair Node priority (heu only, for targeted/greedy search)
+cost= 1063
+open: 509 closed: 280
+steps: 280
+1063
+thilo@Thilos-MBP aoc %  cd /Users/thilo/repo/aoc ; /usr/bin/env /usr/local/bin/python3 /Users/thilo/.vscode/extensions/m
+s-python.python-2022.20.2/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher 58742 -- /Users/thilo/repo/aoc/2
+023/day17.py 
+cost= 1136
+open: 513 closed: 286
+steps: 286
+1136
