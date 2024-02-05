@@ -56,3 +56,61 @@ cost= 1136
 open: 513 closed: 286
 steps: 286
 1136
+
+-----
+# testing algo:
+open:167 closed:1000
+node=12 12 > 102 0 parents=28
+open: 131 closed: 1328
+steps: 28
+102
+
+# heu=dist*2:
+open:141 closed:1000
+node=12 12 > 102 0 parents=28
+open: 96 closed: 1462
+steps: 28
+102
+
+# heu=dist*9:
+node=12 12 > 119 0 parents=26
+open: 43 closed: 30
+steps: 26
+119
+
+# heu=0: uninformed search (Dijkstra)
+open:121 closed:1000
+node=12 12 > 102 0 parents=28
+open: 74 closed: 1564
+steps: 28
+102
+
+-----
+introducing vizualization - now we know algo progress :)
+see day17_viz2.py (start with SPACE)
+
+node=140 140 > 788 0 parents=352
+open: 150 closed: 19090
+steps: 352
+788
+
+-----
+introducing timings - now we know algo run time :)
+
+# dest=30,30:
+open:70 closed:1000 time:3.118007183074951
+node=30 30 > 125 0 parents=64
+open: 60 closed: 1201
+steps: 64
+125
+time total: 3.5366783142089844 s or 0.05894463857014974 min
+
+# dest=140,140:
+# with simplified Node.equals (x,y only) for smallest search space
+open:162 closed:18000 time:68.98262000083923
+open:168 closed:19000 time:75.52856206893921
+node=140 140 > 788 0 parents=352
+open: 150 closed: 19090
+steps: 352
+788
+time total: 76.16226696968079 s or 1.2693711161613463 min

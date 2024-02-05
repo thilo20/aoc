@@ -5,7 +5,7 @@ total=1e12
 grid=[] # store tile(x,y) -> grid[y][x]
 
 # Opening file
-file = open('2023/day17.txt', 'r')
+file = open('2023/day17-test.txt', 'r')
 for line in file:
     grid.append(list(map(lambda x: int(x), re.findall("\d", line))))
 file.close()
@@ -33,6 +33,7 @@ class Node:
     def __lt__(self, other) -> bool:
         """ low heuristic value means close to target. high priority, compare lower """
         return self.cost+self.heu < other.cost+other.heu
+        # return self.cost < other.cost
     
     def parents(self):
         i=0
@@ -57,7 +58,7 @@ def expand(node, grid):
     moves = list(filter(lambda n: on_grid(n.x, n.y, grid), moves))
     for m in moves:
         m.cost+=grid[m.y][m.x]
-        m.heu=dist(m.x, m.y, dest)*2
+        # m.heu=dist(m.x, m.y, dest)*9
         if node.dir==m.dir:
             m.samedir=node.samedir+1
 
@@ -83,7 +84,7 @@ dest=Node(None, max,max,'',-1)
 
 start2=Node(None, 0,0,'>',0)
 start2.samedir=3
-assert start != start2, "nodes must not compare equal!"
+# assert start != start2, "nodes must not compare equal!"
 
 openlist=[] # store x,y,dir,cost
 # openlist.append( start )
@@ -92,9 +93,6 @@ heapq.heappush(openlist, start)
 closedlist=[]
 p=0
 while len(openlist)>0 :
-    p+=1
-    if p%1000==0: print(f"open:{len(openlist)} closed:{len(closedlist)}")
-
     # node=openlist.pop()
     node=heapq.heappop(openlist)
     # heapq.heapify(openlist)
@@ -122,6 +120,8 @@ while len(openlist)>0 :
                     openlist.pop(i)
                     heapq.heappush(openlist, n)
 
+    p+=1
+    if p%1000==0: print(f"open:{len(openlist)} closed:{len(closedlist)}")
 
 msg="open: {} closed: {}"
 print(msg.format(len(openlist), len(closedlist)))
