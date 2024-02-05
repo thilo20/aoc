@@ -1,7 +1,7 @@
 import re
 import heapq
 
-total=0
+total=1e12
 grid=[] # store tile(x,y) -> grid[y][x]
 
 # Opening file
@@ -21,7 +21,7 @@ class Node:
       self.samedir=0
 
     def __str__(self):
-        return f"{self.x} {self.y} {self.dir} {self.cost} {self.heu})"
+        return f"{self.x} {self.y} {self.dir} {self.cost} {self.heu}"
     
     def __eq__(self, other: object) -> bool:
         """ compare attributes x,y,dir,samedir """
@@ -32,9 +32,7 @@ class Node:
         
     def __lt__(self, other) -> bool:
         """ low heuristic value means close to target. high priority, compare lower """
-        if self.heu != other.heu:
-            return self.heu < other.heu
-        return self.cost < other.cost
+        return self.cost+self.heu < other.cost+other.heu
     
     def parents(self):
         i=0
@@ -59,7 +57,7 @@ def expand(node, grid):
     moves = list(filter(lambda n: on_grid(n.x, n.y, grid), moves))
     for m in moves:
         m.cost+=grid[m.y][m.x]
-        m.heu=dist(m.x, m.y, grid)
+        m.heu=dist(m.x, m.y, dest)*2
         if node.dir==m.dir:
             m.samedir=node.samedir+1
 
@@ -74,46 +72,56 @@ def on_grid(x, y, grid):
     if y>=len(grid): return False
     return True
 
-def dist(x, y, grid):
+def dist(x, y, dest):
     """ calculate manhattan distance """
-    return abs(len(grid)-y) + abs(len(grid[0])-x)
+    return abs(dest.y-y) + abs(dest.x-x)
 
 max=len(grid)-1
 start=Node(None, 0,0,'>',0)
 dest=Node(None, max,max,'',-1)
-# dest=Node(None, 20,20,'',-1)
+# dest=Node(None, 30,30,'',-1)
+
+start2=Node(None, 0,0,'>',0)
+start2.samedir=3
+assert start != start2, "nodes must not compare equal!"
 
 openlist=[] # store x,y,dir,cost
 # openlist.append( start )
 heapq.heappush(openlist, start)
 
 closedlist=[]
-
+p=0
 while len(openlist)>0 :
+    p+=1
+    if p%1000==0: print(f"open:{len(openlist)} closed:{len(closedlist)}")
+
     # node=openlist.pop()
     node=heapq.heappop(openlist)
     # heapq.heapify(openlist)
 
     if node.x==dest.x and node.y==dest.y:
-        print("cost=", node.cost)
-        total=node.cost
+        print(f"node={node} parents={node.parents()}")
+        total=min(total,node.cost)
         break
 
-    next=expand(node, grid)
+    # if node not in closedlist:
+    closedlist.append(node)
     
+    next=expand(node, grid)
     for n in next:
         if n not in closedlist: 
-            # openlist.append(n)
-            heapq.heappush(openlist, n)
-        else:
-            i = closedlist.index(n)
-            n2=closedlist[i]
-            # update costs
-            if n.cost < n2.cost:
-                closedlist[i]=n
+            if n not in openlist:
+                # openlist.append(n)
+                heapq.heappush(openlist, n)
+            else:
+                i = openlist.index(n)
+                n2= openlist[i]
+                # update costs
+                if n.cost < n2.cost:
+                    print(f"better cost: {n} vs. {n2} open={len(openlist)} closed={len(closedlist)}")
+                    openlist.pop(i)
+                    heapq.heappush(openlist, n)
 
-    if node not in closedlist:
-        closedlist.append(node)
 
 msg="open: {} closed: {}"
 print(msg.format(len(openlist), len(closedlist)))
