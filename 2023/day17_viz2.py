@@ -33,7 +33,7 @@ class Node:
     def __eq__(self, other: object) -> bool:
         """ compare attributes x,y,dir,samedir """
         if isinstance(other, self.__class__):
-            return (self.x == other.x) and (self.y == other.y) #and (self.dir == other.dir) and (self.samedir == other.samedir)
+            return (self.x == other.x) and (self.y == other.y) and (self.dir == other.dir) and (self.samedir == other.samedir)
         else:
             return False
         
@@ -139,7 +139,6 @@ def find_shortest_path(grid):
 
         coord=(node.x, node.y)
         pygame.draw.rect(WIN, COLOR_RED, (coord[0] * FONT_SIZE, coord[1] * FONT_SIZE, FONT_SIZE, FONT_SIZE))
-        pygame.display.update()
 
         # if node not in closedlist:
         closedlist.append(node)
@@ -155,6 +154,7 @@ def find_shortest_path(grid):
                     pygame.draw.rect(
                         WIN, COLOR_YELLOW, (new_coord[0] * FONT_SIZE, new_coord[1] * FONT_SIZE, FONT_SIZE, FONT_SIZE)
                     )
+                    pygame.display.update()
 
                 else:
                     i = openlist.index(n)
@@ -166,7 +166,9 @@ def find_shortest_path(grid):
                         heapq.heappush(openlist, n)
 
         p+=1
-        if p%1000==0: print(f"open:{len(openlist)} closed:{len(closedlist)} time:{time.time()-time_start}")
+        if p%1000==0: 
+            print(f"open:{len(openlist)} closed:{len(closedlist)} time:{time.time()-time_start}")
+            pygame.display.update()
 
     msg="open: {} closed: {}"
     print(msg.format(len(openlist), len(closedlist)))

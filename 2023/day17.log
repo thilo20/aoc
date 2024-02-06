@@ -114,3 +114,21 @@ open: 150 closed: 19090
 steps: 352
 788
 time total: 76.16226696968079 s or 1.2693711161613463 min
+
+# with Node.equals (x,y,dir) for medium search space
+open:752 closed:73000 time:1007.5648229122162
+open:746 closed:74000 time:1034.9993329048157
+node=140 140 > 773 0 parents=344
+open: 693 closed: 74471
+steps: 344
+773
+time total: 1048.1228399276733 s or 17.468713998794556 min
+
+# with Node.equals (x,y,dir,samedir) for large search space
+open:2217 closed:215000 time:9823.267472982407
+open:2197 closed:216000 time:9910.121576070786
+node=140 140 > 758 0 parents=348
+open: 2245 closed: 216759
+steps: 348
+758
+time total: 9985.568773984909 s or 166.42614623308182 min
