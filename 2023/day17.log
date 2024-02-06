@@ -132,3 +132,28 @@ open: 2245 closed: 216759
 steps: 348
 758
 time total: 9985.568773984909 s or 166.42614623308182 min
+
+# approx. search space:
+140*140     = 19.600 (x,y)
+140*140*4*3 =235.200 (x,y,dir,steps)
+140*140*4*10=784.000 (x,y,dir,steps) for part 2 'ultra crucibles'
+140*140*4   = 78.400 (x,y,dir) smart approach with turns+straights
+
+# with day17b_viz2.py on test data:
+node=12 12 v 102 0 parents=15
+open: 28 closed: 645
+steps: 15
+102
+time total: 17.863272190093994 s or 0.29772120316823325 min
+
+# with day17b_viz2.py on full data:
+open:1588 closed:75000 time:1922.5761120319366
+node=140 140 ^ 768 0 parents=197
+open: 1421 closed: 75634
+steps: 197
+768
+time total: 1953.62197804451 s or 32.56036630074183 min
+
+# improved algo runtime:
+9985-1953=8032 s or 133 min faster (ratio 0.1956, 20% or -80% :)
+expect same runtime for 'ultra crucibles' (Node.equals defines closedlist behavior, unchanged)
