@@ -1,7 +1,7 @@
 from heapq import heappop, heappush
 
 # i=y, k=x
-G = {i + k*1j: int(c) for i,r in enumerate(open('2023/day17-test.txt'))
+G = {i + k*1j: int(c) for i,r in enumerate(open('2023/day17.txt'))
                       for k,c in enumerate(r.strip())}
 
 def f(min, max, end=[*G][-1], x=0):

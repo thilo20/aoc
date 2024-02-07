@@ -84,3 +84,30 @@ steps: 197
 time total: 1953.62197804451 s or 32.56036630074183 min
 
 -> plot nodes=f(t)
+
+-----
+# part 2 'ultra crucibles' 4..10 steps:
+open:2444 closed:77000 time:4157.626561880112
+node=140 140 < 900 0 parents=52
+open: 1549 closed: 77974
+steps: 52
+900
+time total: 4250.6459448337555 s or 70.84409908056259 min
+20
+
+900 is wrong
+895 is right? no, too high!
+
+# retry, disable heu and remove break.. find a lower cost solution?
+open:456 closed:79000 time:4442.736175060272
+node=140 140 < 895 0 parents=54
+node=140 140 > 895 0 parents=54
+node=140 140 v 903 0 parents=53
+node=140 140 ^ 903 0 parents=53
+open: 0 closed: 79524
+steps: 53
+895
+time total: 4484.293341159821 s or 74.73822235266367 min
+
+4 solutions found. Still nothing better :(
+800 is too low (manual test)

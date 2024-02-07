@@ -38,8 +38,8 @@ class Node:
         
     def __lt__(self, other) -> bool:
         """ low heuristic value means close to target. high priority, compare lower """
-        return self.cost+self.heu < other.cost+other.heu
-        # return self.cost < other.cost
+        # return self.cost+self.heu < other.cost+other.heu
+        return self.cost < other.cost
     
     def parents(self):
         i=0
@@ -65,10 +65,10 @@ def expand(node, grid):
     """ return list of possible next moves """
     moves=[]
     delta={'>':(1,0), '<':(-1,0), 'v':(0,1), '^':(0,-1)}
-    # init both 2 turns with 1..3 steps forward
+    # init both 2 turns with 4..10 steps forward
     for turn in "LR":
         newdir=rotate_left(node.dir) if turn=="L" else rotate_right(node.dir)
-        for steps in range(1,3+1):
+        for steps in range(4,10+1):
             newposx = node.x + steps * delta[node.dir][0]
             newposy = node.y + steps * delta[node.dir][1]
             
@@ -77,10 +77,10 @@ def expand(node, grid):
                 moves.append(Node(node, newposx, newposy, newdir, node.cost+newcost))
     
     # moves = list(filter(lambda n: on_grid(n.x, n.y, grid), moves))
-    for m in moves:
-        # m.cost+=grid[m.y][m.x]
-        m.heu=dist(m.x, m.y, dest)*1
-        assert node.dir!=m.dir, "node direction must change!"
+    # for m in moves:
+    #     # m.cost+=grid[m.y][m.x]
+    #     m.heu=dist(m.x, m.y, dest)*1
+    #     assert node.dir!=m.dir, "node direction must change!"
 
     return moves
 
@@ -147,7 +147,7 @@ def find_shortest_path(grid):
         if node.x==dest.x and node.y==dest.y:
             print(f"node={node} parents={node.parents()}")
             total=min(total,node.cost)
-            break
+            # break
 
         coord=(node.x, node.y)
         pygame.draw.rect(WIN, COLOR_RED, (coord[0] * FONT_SIZE, coord[1] * FONT_SIZE, FONT_SIZE, FONT_SIZE))
