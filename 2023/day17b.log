@@ -111,3 +111,9 @@ time total: 4484.293341159821 s or 74.73822235266367 min
 
 4 solutions found. Still nothing better :(
 800 is too low (manual test)
+
+# finally accepted result:
+2023/day17b-retry.py 
+758
+892
+# unclear where diff=3 happens :(

@@ -199,8 +199,8 @@ def main():
                 run = False
 
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-                find_shortest_path(matrix, display_every_x_frames=10)
-                # find_shortest_path(matrix, max_direction_count=10, min_direction_count=4, display_every_x_frames=100)
+                # find_shortest_path(matrix, display_every_x_frames=10)
+                find_shortest_path(matrix, max_direction_count=10, min_direction_count=4, display_every_x_frames=100)
 
 
 if __name__ == "__main__":
