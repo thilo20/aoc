@@ -5,7 +5,7 @@ G = {i + k*1j: int(c) for i,r in enumerate(open('2023/day17.txt'))
                       for k,c in enumerate(r.strip())}
 
 def f(min, max, end=[*G][-1], x=0):
-    todo = [(0,0,0,1)]#, (0,0,0,1j)]
+    todo = [(0,0,0,1), (0,0,0,1j)]
     seen = set()
 
     while todo:
