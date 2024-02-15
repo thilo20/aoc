@@ -121,3 +121,17 @@ time total: 4484.293341159821 s or 74.73822235266367 min
 # fixed search seed 'todo':
 2023/day17-complex.py 
 758 892
+
+# fixed search init 'startv':
+2023/day17b_viz2.py
+open:452 closed:79000 time:5876.033483982086
+node=140 140 > 893 0 parents=51
+node=140 140 < 893 0 parents=51
+node=140 140 ^ 899 0 parents=50
+node=140 140 v 899 0 parents=50
+open: 0 closed: 79524
+steps: 50
+893
+time total: 5934.560034990311 s or 98.90933391650518 min
+# off-by-one :(
+# is the start tile? grid[0][0]==1, maybe yes!

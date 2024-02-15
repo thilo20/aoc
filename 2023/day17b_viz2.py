@@ -98,6 +98,7 @@ def dist(x, y, dest):
 
 max=len(grid)-1
 start=Node(None, 0,0,'>',0)
+startv=Node(None, 0,0,'v',0)
 dest=Node(None, max,max,'',-1)
 # dest=Node(None, 30,30,'',-1)
 
@@ -108,6 +109,7 @@ start2.samedir=3
 openlist=[] # store x,y,dir,cost
 # openlist.append( start )
 heapq.heappush(openlist, start)
+heapq.heappush(openlist, startv)
 
 import pygame
 import os
