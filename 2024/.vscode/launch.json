@@ -1,0 +1,45 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}",
+            "args": "F:\\programming\\repo\\aoc\\2024\\prepare\\inputs1.txt"
+        },
+        {
+            "type": "java",
+            "name": "Day1",
+            "request": "launch",
+            "mainClass": "Day1",
+            "projectName": "2024_4aa98a86",
+            "args": "F:\\programming\\repo\\aoc\\2024\\prepare\\inputs1.txt"
+        },
+        {
+            "type": "java",
+            "name": "Day1b",
+            "request": "launch",
+            "mainClass": "Day1b",
+            "projectName": "2024_4aa98a86",
+            "args": "F:\\programming\\repo\\aoc\\2024\\prepare\\inputs1.txt"
+        },
+        {
+            "type": "java",
+            "name": "Hello",
+            "request": "launch",
+            "mainClass": "Hello",
+            "projectName": "2024_4aa98a86"
+        },
+        {
+            "type": "java",
+            "name": "Testcase",
+            "request": "launch",
+            "mainClass": "Testcase",
+            "projectName": "2024_4aa98a86"
+        }
+    ]
+}
