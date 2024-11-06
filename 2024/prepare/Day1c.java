@@ -14,7 +14,8 @@ public class Day1c {
         try {
             return Files.readAllLines(path);
         } catch (IOException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
+            System.err.println(e);
             return List.of();
         }
     }

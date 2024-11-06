@@ -6,10 +6,17 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Day1c",
+            "request": "launch",
+            "mainClass": "Day1c",
+            "projectName": "2024_4aa98a86"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}",
-            "args": "F:\\programming\\repo\\aoc\\2024\\prepare\\inputs1.txt"
+            "args": "prepare\\inputs1.txt"
         },
         {
             "type": "java",
