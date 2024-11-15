@@ -29,10 +29,9 @@ public class Day1d {
         }
     }
 
-    public static int solvePart1Strings(List<String> lines) {
-        return solvePart1(
-                lines.stream().map(Day1d::tryParse)
-                        .collect(Collectors.toList()));
+    public static List<Integer> convertLinesToNumbers(List<String> lines) {
+        return lines.stream().map(Day1d::tryParse)
+                .collect(Collectors.toList());
     }
 
     public static int solvePart1(List<Integer> numbers) {
@@ -55,7 +54,7 @@ public class Day1d {
 
     public static void main(String[] args) {
         if (args.length > 0) {
-            solvePart1Strings(readInput(args[0]));
+            solvePart1(convertLinesToNumbers(readInput(args[0])));
         }
     }
 }
