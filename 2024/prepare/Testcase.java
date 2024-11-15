@@ -13,7 +13,7 @@ public class Testcase {
     public void whenReadWithBufferedReader_thenCorrect()
             throws IOException {
         String expected_value = "Hello, world!";
-        String file = "F:\\programming\\repo\\aoc\\2024\\prepare\\fileTest.txt";
+        String file = "prepare/fileTest.txt";
 
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String currentLine = reader.readLine();

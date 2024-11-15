@@ -6,47 +6,28 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Day1c",
+            "name": "Current File (no args)",
             "request": "launch",
-            "mainClass": "Day1c",
-            "projectName": "2024_4aa98a86"
+            "mainClass": "${file}"
         },
         {
             "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}",
-            "args": "prepare\\inputs1.txt"
-        },
-        {
-            "type": "java",
-            "name": "Day1",
-            "request": "launch",
-            "mainClass": "Day1",
-            "projectName": "2024_4aa98a86",
-            "args": "F:\\programming\\repo\\aoc\\2024\\prepare\\inputs1.txt"
-        },
-        {
-            "type": "java",
-            "name": "Day1b",
-            "request": "launch",
-            "mainClass": "Day1b",
-            "projectName": "2024_4aa98a86",
-            "args": "F:\\programming\\repo\\aoc\\2024\\prepare\\inputs1.txt"
+            "args": "prepare/inputs1.txt"
         },
         {
             "type": "java",
             "name": "Hello",
             "request": "launch",
-            "mainClass": "Hello",
-            "projectName": "2024_4aa98a86"
+            "mainClass": "Hello"
         },
         {
             "type": "java",
             "name": "Testcase",
             "request": "launch",
-            "mainClass": "Testcase",
-            "projectName": "2024_4aa98a86"
+            "mainClass": "Testcase"
         }
     ]
 }
