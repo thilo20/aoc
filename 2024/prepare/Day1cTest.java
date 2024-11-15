@@ -2,7 +2,6 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class Day1cTest {
@@ -28,7 +27,6 @@ public class Day1cTest {
                 Day1c.solvePart1(List.of()));
     }
 
-    @Ignore("we rely on a blank line as last list item!")
     @Test
     public void solvePart1_singleListItem() {
         assertEquals(
@@ -47,13 +45,13 @@ public class Day1cTest {
     public void solvePart1_singleBlock() {
         assertEquals(
                 6,
-                Day1c.solvePart1(List.of("1", "2", "3", "")));
+                Day1c.solvePart1(List.of("1", "2", "3")));
     }
 
     @Test
     public void solvePart1_twoBlocks() {
         assertEquals(
                 3,
-                Day1c.solvePart1(List.of("1", "", "3", "")));
+                Day1c.solvePart1(List.of("1", "", "3")));
     }
 }

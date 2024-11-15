@@ -28,10 +28,10 @@ public class Day1c {
             if (currentLine.length() > 0) {
                 calories += Integer.parseInt(currentLine);
             } else {
-                if (calories > maxCalories) {
-                    maxCalories = calories;
-                }
                 calories = 0;
+            }
+            if (calories > maxCalories) {
+                maxCalories = calories;
             }
         }
         System.out.println(maxCalories);
