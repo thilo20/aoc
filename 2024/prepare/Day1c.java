@@ -20,7 +20,7 @@ public class Day1c {
         }
     }
 
-    public static void solvePart1(List<String> lines) {
+    public static int solvePart1(List<String> lines) {
         int calories = 0;
         int maxCalories = 0;
 
@@ -35,6 +35,7 @@ public class Day1c {
             }
         }
         System.out.println(maxCalories);
+        return maxCalories;
     }
 
     public static void main(String[] args) {
