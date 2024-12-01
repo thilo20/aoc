@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /** solve https://adventofcode.com/2022/day/1 */
-public class Day1 {
+public class Day1a {
 
     public static void solvePart1(String filename) {
         int calories = 0;
