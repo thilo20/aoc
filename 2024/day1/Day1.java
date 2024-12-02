@@ -9,7 +9,10 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+
+import org.springframework.data.util.StreamUtils;
 
 /** solve https://adventofcode.com/2024/day/1 */
 public class Day1 {
@@ -44,6 +47,7 @@ public class Day1 {
 
         for (String line : lines) {
             String[] parts = line.split("   ", 0);
+            assert (parts.length == 2);
             left.add(Integer.valueOf(parts[0]));
             right.add(Integer.valueOf(parts[1]));
         }
@@ -83,13 +87,44 @@ public class Day1 {
         return total;
     }
 
+    public static int solveBothPartsWithStreams(List<String> lines) {
+        List<Integer> left = new ArrayList<>();
+        List<Integer> right = new ArrayList<>();
+
+        for (String line : lines) {
+            String[] parts = line.split(" {3}", 0);
+            assert (parts.length == 2);
+            left.add(Integer.valueOf(parts[0]));
+            right.add(Integer.valueOf(parts[1]));
+        }
+
+        Collections.sort(left);
+        Collections.sort(right);
+
+        Integer total = StreamUtils.zip(
+                left.stream(),
+                right.stream(),
+                (l, r) -> Math.abs(l - r))
+                .collect(Collectors.summingInt(Integer::valueOf));
+        System.out.println("part1 with streams: " + total);
+
+        Map<Integer, Long> counted = right.stream()
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        Integer total2 = left.stream()
+                .map(x -> x * counted.getOrDefault(x, 0L))
+                .mapToInt(Long::intValue).sum();
+        System.out.println("part2 with streams: " + total2);
+        return total;
+    }
+
     public static void main(String[] args) {
         if (args.length > 0) {
             solvePart1(readInput(args[0]));
             solvePart2(readInput(args[0]));
         } else {
-            solvePart1(readInput("day1/input.txt"));
-            solvePart2(readInput("day1/input.txt"));
+            solvePart1(readInput("day1/input2.txt"));
+            solvePart2(readInput("day1/input2.txt"));
+            solveBothPartsWithStreams(readInput("day1/input2.txt"));
         }
     }
 }
