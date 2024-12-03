@@ -1,0 +1,129 @@
+// package day1;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
+import org.springframework.data.util.StreamUtils;
+
+/** solve https://adventofcode.com/2024/day/3 */
+public class Day3 {
+
+    public static List<String> readInput(String filename) {
+        Path path = Paths.get(filename);
+        try {
+            return Files.readAllLines(path);
+        } catch (IOException e) {
+            System.err.println(e);
+            return List.of();
+        }
+    }
+
+    public static Integer tryParse(String text) {
+        try {
+            return Integer.parseInt(text);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+
+    public static List<Integer> convertLinesToNumbers(List<String> lines) {
+        return lines.stream().map(Day1d::tryParse)
+                .collect(Collectors.toList());
+    }
+
+    public static int solvePart1(List<String> lines) {
+        int total = 0;
+
+        Pattern pattern = Pattern.compile("mul\\((\\d+),(\\d+)\\)");
+
+        for (String line : lines) {
+            Matcher matcher = pattern.matcher(line);
+            boolean matchFound = matcher.find();
+            while (matchFound) {
+                System.out.println("Match pos: " + matcher.start() + " val: " + matcher.group());
+                total += tryParse(matcher.group(1)) * tryParse(matcher.group(2));
+                matchFound = matcher.find();
+            }
+        }
+
+        System.out.println("part1: " + total);
+        return total;
+    }
+
+    public static int solvePart2(List<String> lines) {
+        int total = 0;
+        List<Integer> left = new ArrayList<>();
+        Map<Integer, Integer> right = new HashMap<>();
+
+        for (String line : lines) {
+            String[] parts = line.split("   ", 0);
+            left.add(Integer.valueOf(parts[0]));
+
+            Integer val = Integer.valueOf(parts[1]);
+            Integer count = right.get(val);
+            if (count == null) {
+                right.put(val, 1);
+            } else {
+                right.put(val, count + 1);
+            }
+        }
+
+        for (Integer val : left) {
+            total += val * right.getOrDefault(val, 0);
+        }
+        System.out.println("part2: " + total);
+        return total;
+    }
+
+    public static int solveBothPartsWithStreams(List<String> lines) {
+        List<Integer> left = new ArrayList<>();
+        List<Integer> right = new ArrayList<>();
+
+        for (String line : lines) {
+            String[] parts = line.split(" {3}", 0);
+            assert (parts.length == 2);
+            left.add(Integer.valueOf(parts[0]));
+            right.add(Integer.valueOf(parts[1]));
+        }
+
+        Collections.sort(left);
+        Collections.sort(right);
+
+        Integer total = StreamUtils.zip(
+                left.stream(),
+                right.stream(),
+                (l, r) -> Math.abs(l - r))
+                .collect(Collectors.summingInt(Integer::valueOf));
+        System.out.println("part1 with streams: " + total);
+
+        Map<Integer, Long> counted = right.stream()
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        Integer total2 = left.stream()
+                .map(x -> x * counted.getOrDefault(x, 0L))
+                .mapToInt(Long::intValue).sum();
+        System.out.println("part2 with streams: " + total2);
+        return total;
+    }
+
+    public static void main(String[] args) {
+        if (args.length > 0) {
+            solvePart1(readInput(args[0]));
+            solvePart2(readInput(args[0]));
+        } else {
+            solvePart1(readInput("day3/input2.txt"));
+            // solvePart2(readInput("day3/input.txt"));
+            // solveBothPartsWithStreams(readInput("day1/input2.txt"));
+        }
+    }
+}
