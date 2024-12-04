@@ -5,10 +5,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Set;
 
 /** solve https://adventofcode.com/2024/day/4 */
 public class Day4 {
@@ -139,32 +139,43 @@ public class Day4 {
         return total;
     }
 
-    public static int solvePart2(List<String> lines) {
+    public int solvePart2(List<String> lines) {
         int total = 0;
 
-        Pattern pattern = Pattern.compile("mul\\((\\d+),(\\d+)\\)");
-        Pattern pattern2 = Pattern.compile("do(n't)?\\(\\)");
+        loadBoard(lines);
 
-        boolean enabled = true;
-        for (String line : lines) {
-            Matcher matcher = pattern.matcher(line);
-            boolean matchFound = matcher.find();
-            while (matchFound) {
-                System.out.println("mul pos: " + matcher.start() + " val: " + matcher.group());
+        String word = "X-MAS";
+        // anchor A, chars M/S relative
 
-                // process all do/don't toggles left of current start index
-                Matcher matcher2 = pattern2.matcher(line.subSequence(0, matcher.start()));
-                boolean matchFound2 = matcher2.find();
-                while (matchFound2 && matcher2.start() < matcher.start()) {
-                    System.out.println("do/n't pos: " + matcher2.start() + " val: " + matcher2.group());
-                    enabled = "do()".equals(matcher2.group()) ? true : false;
-                    matchFound2 = matcher2.find();
-                }
+        Set<String> corner = new HashSet<>();
+        corner.add("MMSS");
+        corner.add("SSMM");
+        corner.add("MSMS");
+        corner.add("SMSM");
 
-                if (enabled)
-                    total += tryParse(matcher.group(1)) * tryParse(matcher.group(2));
-                matchFound = matcher.find();
+        Map<String, Coord> directions = new HashMap<>();
+        directions.put("NE", new Coord(1, -1));
+        directions.put("SE", new Coord(1, 1));
+        directions.put("SW", new Coord(-1, 1));
+        directions.put("NW", new Coord(-1, -1));
+
+        for (Coord pos : board.keySet()) {
+            String val = board.get(pos);
+            if (!"A".equals(val))
+                continue;
+            StringBuilder sb = new StringBuilder();
+            for (Coord dir : directions.values()) {
+                Coord test = pos.move(dir);
+                val = board.get(test);
+                if (val == null || !("M".equals(val) || "S".equals(val)))
+                    break;
+                sb.append(val);
             }
+            String corners = sb.toString();
+            if (corners.length() != 4)
+                continue;
+            if (corner.contains(corners))
+                total++;
         }
 
         System.out.println("part2: " + total);
@@ -178,7 +189,7 @@ public class Day4 {
         } else {
             Day4 app = new Day4();
             app.solvePart1(readInput("day4/input3.txt"));
-            // solvePart2(readInput("day4/input-pt2.txt"));
+            app.solvePart2(readInput("day4/input3.txt"));
         }
     }
 }
