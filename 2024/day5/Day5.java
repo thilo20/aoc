@@ -5,10 +5,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -35,7 +33,7 @@ public class Day5 {
     }
 
     public static List<Integer> convertLinesToNumbers(List<String> lines) {
-        return lines.stream().map(Day1d::tryParse)
+        return lines.stream().map(Day5::tryParse)
                 .collect(Collectors.toList());
     }
 
@@ -81,8 +79,6 @@ public class Day5 {
 
     public static int solvePart1(List<String> lines) {
         int total = 0;
-        List<Integer> left = new ArrayList<>();
-        List<Integer> right = new ArrayList<>();
 
         Set<Rule> rules = new HashSet<>();
         List<List<Integer>> updates = new ArrayList<>();
@@ -96,20 +92,13 @@ public class Day5 {
 
             parts = line.split(",");
             if (parts.length > 1) {
-                updates.add(Stream.of(parts).map(Day1d::tryParse)
+                updates.add(Stream.of(parts).map(Day5::tryParse)
                         .collect(Collectors.toList()));
             }
         }
 
         for (List<Integer> update : updates) {
-            // test if any page pair violates a rule (upper triangle)
-            boolean correct = true;
-            for (int i = 1; i < update.size(); i++) {
-                if (rules.contains(new Rule(update.get(i), update.get(i - 1)))) {
-                    correct = false;
-                    break;
-                }
-            }
+            boolean correct = isCorrect(rules, update);
             if (correct) {
                 total += update.get(update.size() / 2);
             }
@@ -121,27 +110,69 @@ public class Day5 {
 
     public static int solvePart2(List<String> lines) {
         int total = 0;
-        List<Integer> left = new ArrayList<>();
-        Map<Integer, Integer> right = new HashMap<>();
+
+        Set<Rule> rules = new HashSet<>();
+        List<List<Integer>> updates = new ArrayList<>();
 
         for (String line : lines) {
-            String[] parts = line.split("   ", 0);
-            left.add(Integer.valueOf(parts[0]));
+            String[] parts = line.split("\\|");
+            if (parts.length == 2) {
+                rules.add(new Rule(tryParse(parts[0]), tryParse(parts[1])));
+                continue;
+            }
 
-            Integer val = Integer.valueOf(parts[1]);
-            Integer count = right.get(val);
-            if (count == null) {
-                right.put(val, 1);
-            } else {
-                right.put(val, count + 1);
+            parts = line.split(",");
+            if (parts.length > 1) {
+                updates.add(Stream.of(parts).map(Day5::tryParse)
+                        .collect(Collectors.toList()));
             }
         }
 
-        for (Integer val : left) {
-            total += val * right.getOrDefault(val, 0);
+        for (List<Integer> update : updates) {
+            // test if any page pair violates a rule (upper triangle)
+            boolean correct = isCorrect(rules, update);
+            if (!correct) {
+                // fix order
+                update = fix(rules, update);
+                correct = isCorrect(rules, update);
+                assert (correct);
+                total += update.get(update.size() / 2);
+            }
+
         }
         System.out.println("part2: " + total);
         return total;
+    }
+
+    private static boolean isCorrect(Set<Rule> rules, List<Integer> update) {
+        for (int i = 0; i < update.size() - 1; i++) {
+            for (int j = i + 1; j < update.size(); j++) {
+                if (rules.contains(new Rule(update.get(j), update.get(i)))) {
+                    System.out.println(String.format("i=%d j=%d size=%d", i, j, update.size()));
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private static List<Integer> fix(Set<Rule> rules, List<Integer> buggy) {
+        List<Integer> update = new ArrayList<>(buggy);
+        for (int i = 0; i < update.size() - 1; i++) {
+            for (int j = i + 1; j < update.size(); j++) {
+                if (rules.contains(new Rule(update.get(j), update.get(i)))) {
+                    // System.out.println(String.format("%s i=%d j=%d size=%d", update.toString(),
+                    // i, j, update.size()));
+                    // sort item at index i after j
+                    update.add(j + 1, update.get(i));
+                    update.remove(i);
+                    // re-test i
+                    i--;
+                    break;
+                }
+            }
+        }
+        return update;
     }
 
     public static void main(String[] args) {
@@ -149,8 +180,8 @@ public class Day5 {
             solvePart1(readInput(args[0]));
             solvePart2(readInput(args[0]));
         } else {
-            solvePart1(readInput("day5/input2.txt"));
-            // solvePart2(readInput("day5/input.txt"));
+            solvePart1(readInput("day5/input.txt"));
+            solvePart2(readInput("day5/input.txt"));
         }
     }
 }
