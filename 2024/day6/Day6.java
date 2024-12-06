@@ -108,6 +108,12 @@ public class Day6 {
             CoordWithDirection other = (CoordWithDirection) obj;
             if (!getEnclosingInstance().equals(other.getEnclosingInstance()))
                 return false;
+            if (obj == null)
+                return false;
+            if (x != other.x)
+                return false;
+            if (y != other.y)
+                return false;
             if (dir == null) {
                 if (other.dir != null)
                     return false;
@@ -243,52 +249,69 @@ public class Day6 {
         }
 
         plotMap(visited, null);
+        System.out.println("start: " + startPos.toString());
 
         Set<Coord> options = new HashSet<>();
         steps = 0;
-        int total = 0;
         for (CoordWithDirection coordWithDirection : visitedDir) {
+            // if (coordWithDirection.x == 8 && coordWithDirection.y == 4) {
+            if (coordWithDirection.x == 3 && coordWithDirection.y == 6) {
+                int i = 42;
+            }
             if (startPos.equals(new Coord(coordWithDirection.x, coordWithDirection.y))) {
                 continue;
             }
+
+            Set<CoordWithDirection> path = new HashSet<>();
+
             // System.out.println(coordWithDirection.toString());
             // test if blocking this tile, taking a step back and rotating right would lead
-            // to a visited
-            // tile
-            Coord next = coordWithDirection.move(directions.get(opposite(dir)));
+            // to a visited tile
+            // step back
+            pos = coordWithDirection.move(directions.get(opposite(coordWithDirection.dir)));
+            // init path for loop detection
+            path.add(new CoordWithDirection(pos.x, pos.y, coordWithDirection.dir));
+            // simulate blocked position "#" at "O" ahead, thus rotate
             dir = rotateRight(coordWithDirection.dir);
-            while (board.containsKey(next)) {
-                if (visitedDir.contains(new CoordWithDirection(next.x, next.y, dir))) {
+            // start walking
+            while (board.containsKey(pos)) {
+                path.add(new CoordWithDirection(pos.x, pos.y, dir));
+                // look ahead
+                Coord next = pos.move(directions.get(dir));
+                if ("#".equals(board.getOrDefault(next, ""))) {
+                    dir = rotateRight(dir);
+                } else {
+                    pos = next;
+                }
+                if (path.contains(new CoordWithDirection(pos.x, pos.y, dir))) {
+                    // loop detected
                     steps++;
                     options.add(new Coord(coordWithDirection.x, coordWithDirection.y));
                     // System.out.println(String.format("hit %d: %s", steps, coordWithDirection));
                     break;
-                } else if ("#".equals(board.getOrDefault(next, ""))) {
-                    dir = rotateRight(dir);
-                    break;
                 }
-                next = next.move(directions.get(dir));
                 // System.out.println(String.format(" step x=%d y=%d dir=%s", next.x, next.y,
                 // dir));
             }
         }
 
-        Set<Coord> expected = new HashSet<>();
-        expected.add(new Coord(3, 6));
-        expected.add(new Coord(6, 7));
-        expected.add(new Coord(7, 7));
-        expected.add(new Coord(1, 8));
-        expected.add(new Coord(3, 8));
-        expected.add(new Coord(7, 9));
+        if (true) {
+            Set<Coord> expected = new HashSet<>();
+            expected.add(new Coord(3, 6));
+            expected.add(new Coord(6, 7));
+            expected.add(new Coord(7, 7));
+            expected.add(new Coord(1, 8));
+            expected.add(new Coord(3, 8));
+            expected.add(new Coord(7, 9));
 
-        System.out.println();
-        plotMap(visited, expected);
-        System.out.println();
-        plotMap(visited, options);
+            // System.out.println();
+            // plotMap(visited, expected);
+            System.out.println();
+            plotMap(visited, options);
 
-        System.out.println("start: " + startPos.toString());
-        for (Coord coord : options) {
-            System.out.println(coord.toString() + (expected.contains(coord) ? " hit" : " miss"));
+            for (Coord coord : options) {
+                System.out.println(coord.toString() + (expected.contains(coord) ? " hit" : "miss"));
+            }
         }
 
         System.out.println("part2: " + options.size());
