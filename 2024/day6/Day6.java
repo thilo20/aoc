@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -230,7 +231,7 @@ public class Day6 {
         directions.put("W", new Coord(-1, 0));
 
         Set<Coord> visited = new HashSet<>();
-        Set<CoordWithDirection> visitedDir = new HashSet<>();
+        List<CoordWithDirection> visitedDir = new ArrayList<>();
         Coord pos = startPos;
         String dir = "N";
         while (board.containsKey(pos)) {
@@ -264,15 +265,11 @@ public class Day6 {
 
             Set<CoordWithDirection> path = new HashSet<>();
 
-            // System.out.println(coordWithDirection.toString());
-            // test if blocking this tile, taking a step back and rotating right would lead
-            // to a visited tile
+            // test if temp. blocking this tile leads to a loop
+            board.replace(new Coord(coordWithDirection.x, coordWithDirection.y), "#");
             // step back
-            pos = coordWithDirection.move(directions.get(opposite(coordWithDirection.dir)));
-            // init path for loop detection
-            path.add(new CoordWithDirection(pos.x, pos.y, coordWithDirection.dir));
-            // simulate blocked position "#" at "O" ahead, thus rotate
-            dir = rotateRight(coordWithDirection.dir);
+            pos = startPos;
+            dir = "N";
             // start walking
             while (board.containsKey(pos)) {
                 path.add(new CoordWithDirection(pos.x, pos.y, dir));
@@ -293,9 +290,12 @@ public class Day6 {
                 // System.out.println(String.format(" step x=%d y=%d dir=%s", next.x, next.y,
                 // dir));
             }
+            // unblock tile
+            board.replace(new Coord(coordWithDirection.x, coordWithDirection.y), ".");
+
         }
 
-        if (true) {
+        if (false) {
             Set<Coord> expected = new HashSet<>();
             expected.add(new Coord(3, 6));
             expected.add(new Coord(6, 7));
@@ -340,8 +340,8 @@ public class Day6 {
             // solvePart2(readInput(args[0]));
         } else {
             Day6 app = new Day6();
-            // app.solvePart1(readInput("day6/input.txt"));
-            app.solvePart2(readInput("day6/input.txt"));
+            app.solvePart1(readInput("day6/input.txt"));
+            app.solvePart2(readInput("day6/input2.txt"));
         }
     }
 }

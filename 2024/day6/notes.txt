@@ -1,0 +1,28 @@
+....#.....
+....XXXXX#
+....X...X.
+..#.X...X.
+..XXXXX#X.
+..X.X.X.X.
+.#XXXXXXX.
+.XXXXXXX#.
+#XXXXXXX..
+......#X..
+
+Part 2: kein "Smarter Ansatz" hat funktioniert!
+
+1. Alle 'O' liegen auf einem 'X'
+2. Vorgänger-Feld 'Y' mit Richtung ist bekannt
+3. Rotation muss zu einem visited Feld mit passender Richtung leiten (aber nicht unmittelbar!)
+    - leider falsch.
+
+Zu prüfen: gibt es eine direkte Geradeaus-Verbindung von 'Y' zu einem 'X' mit passender Richtung?
+Bzw. gibt es sie nicht? (Kommt zuerst ein '#' oder off-board?)
+    - falsch!
+
+2.Versuch: Loop-Erkennung mit simuliertem "O"
+1974 too high!
+    - falsch: simulierte Blockade unvollstaendig :(
+
+3.Versuch: Loop-Erkennung ab Start..
+1836 with temp.blocking and startPos
