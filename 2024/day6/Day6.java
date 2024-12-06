@@ -80,6 +80,52 @@ public class Day6 {
         }
     }
 
+    public class CoordWithDirection extends Coord {
+        String dir;
+
+        public CoordWithDirection(int x, int y, String dir) {
+            super(x, y);
+            this.dir = dir;
+        }
+
+        @Override
+        public int hashCode() {
+            final int prime = 31;
+            int result = super.hashCode();
+            result = prime * result + getEnclosingInstance().hashCode();
+            result = prime * result + ((dir == null) ? 0 : dir.hashCode());
+            return result;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj)
+                return true;
+            if (!super.equals(obj))
+                return false;
+            if (getClass() != obj.getClass())
+                return false;
+            CoordWithDirection other = (CoordWithDirection) obj;
+            if (!getEnclosingInstance().equals(other.getEnclosingInstance()))
+                return false;
+            if (dir == null) {
+                if (other.dir != null)
+                    return false;
+            } else if (!dir.equals(other.dir))
+                return false;
+            return true;
+        }
+
+        private Day6 getEnclosingInstance() {
+            return Day6.this;
+        }
+
+        @Override
+        public String toString() {
+            return "CoordWithDirection [x=" + x + ", y=" + y + ", dir=" + dir + "]";
+        }
+    }
+
     int max_x, max_y;
     Map<Coord, String> board;
     Coord startPos;
@@ -151,47 +197,118 @@ public class Day6 {
         }
     }
 
+    String opposite(String dir) {
+        switch (dir) {
+            case "N":
+                return "S";
+            case "E":
+                return "W";
+            case "S":
+                return "N";
+            case "W":
+                return "E";
+            default:
+                return "";
+        }
+    }
+
     public int solvePart2(List<String> lines) {
-        int total = 0;
+        int steps = 0;
 
         loadBoard(lines);
 
-        // String word = "X-MAS";
-        // anchor A, chars M/S relative
-
-        Set<String> corner = new HashSet<>();
-        corner.add("MMSS");
-        corner.add("SSMM");
-        corner.add("MSMS");
-        corner.add("SMSM");
-
         Map<String, Coord> directions = new HashMap<>();
-        directions.put("NE", new Coord(1, -1));
-        directions.put("SE", new Coord(1, 1));
-        directions.put("SW", new Coord(-1, 1));
-        directions.put("NW", new Coord(-1, -1));
+        directions.put("N", new Coord(0, -1));
+        directions.put("E", new Coord(1, 0));
+        directions.put("S", new Coord(0, 1));
+        directions.put("W", new Coord(-1, 0));
 
-        for (Coord pos : board.keySet()) {
-            String val = board.get(pos);
-            if (!"A".equals(val))
-                continue;
-            StringBuilder sb = new StringBuilder();
-            for (Coord dir : directions.values()) {
-                Coord test = pos.move(dir);
-                val = board.get(test);
-                if (val == null || !("M".equals(val) || "S".equals(val)))
-                    break;
-                sb.append(val);
+        Set<Coord> visited = new HashSet<>();
+        Set<CoordWithDirection> visitedDir = new HashSet<>();
+        Coord pos = startPos;
+        String dir = "N";
+        while (board.containsKey(pos)) {
+            steps++;
+            visited.add(pos);
+            // if (!pos.equals(startPos)) {
+            visitedDir.add(new CoordWithDirection(pos.x, pos.y, dir));
+            // }
+            // look ahead
+            Coord next = pos.move(directions.get(dir));
+            if ("#".equals(board.getOrDefault(next, ""))) {
+                dir = rotateRight(dir);
+            } else {
+                pos = next;
             }
-            String corners = sb.toString();
-            if (corners.length() != 4)
-                continue;
-            if (corner.contains(corners))
-                total++;
         }
 
-        System.out.println("part2: " + total);
-        return total;
+        plotMap(visited, null);
+
+        Set<Coord> options = new HashSet<>();
+        steps = 0;
+        int total = 0;
+        for (CoordWithDirection coordWithDirection : visitedDir) {
+            if (startPos.equals(new Coord(coordWithDirection.x, coordWithDirection.y))) {
+                continue;
+            }
+            // System.out.println(coordWithDirection.toString());
+            // test if blocking this tile, taking a step back and rotating right would lead
+            // to a visited
+            // tile
+            Coord next = coordWithDirection.move(directions.get(opposite(dir)));
+            dir = rotateRight(coordWithDirection.dir);
+            while (board.containsKey(next)) {
+                if (visitedDir.contains(new CoordWithDirection(next.x, next.y, dir))) {
+                    steps++;
+                    options.add(new Coord(coordWithDirection.x, coordWithDirection.y));
+                    // System.out.println(String.format("hit %d: %s", steps, coordWithDirection));
+                    break;
+                } else if ("#".equals(board.getOrDefault(next, ""))) {
+                    dir = rotateRight(dir);
+                    break;
+                }
+                next = next.move(directions.get(dir));
+                // System.out.println(String.format(" step x=%d y=%d dir=%s", next.x, next.y,
+                // dir));
+            }
+        }
+
+        Set<Coord> expected = new HashSet<>();
+        expected.add(new Coord(3, 6));
+        expected.add(new Coord(6, 7));
+        expected.add(new Coord(7, 7));
+        expected.add(new Coord(1, 8));
+        expected.add(new Coord(3, 8));
+        expected.add(new Coord(7, 9));
+
+        System.out.println();
+        plotMap(visited, expected);
+        System.out.println();
+        plotMap(visited, options);
+
+        System.out.println("start: " + startPos.toString());
+        for (Coord coord : options) {
+            System.out.println(coord.toString() + (expected.contains(coord) ? " hit" : " miss"));
+        }
+
+        System.out.println("part2: " + options.size());
+        return steps;
+    }
+
+    private void plotMap(Set<Day6.Coord> visited, Set<Day6.Coord> options) {
+        for (int y = 0; y < max_y; y++) {
+            StringBuilder sb = new StringBuilder();
+            for (int x = 0; x < max_x; x++) {
+                if (options != null && options.contains(new Coord(x, y))) {
+                    sb.append("O");
+                } else if (visited.contains(new Coord(x, y))) {
+                    sb.append("X");
+                } else {
+                    sb.append(board.get(new Coord(x, y)));
+                }
+            }
+            System.out.println(sb.toString());
+        }
     }
 
     public static void main(String[] args) {
@@ -200,8 +317,8 @@ public class Day6 {
             // solvePart2(readInput(args[0]));
         } else {
             Day6 app = new Day6();
-            app.solvePart1(readInput("day6/input2.txt"));
-            // app.solvePart2(readInput("day6/input.txt"));
+            // app.solvePart1(readInput("day6/input.txt"));
+            app.solvePart2(readInput("day6/input.txt"));
         }
     }
 }
